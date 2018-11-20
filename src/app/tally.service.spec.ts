@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TallyCounterService } from './tally-counter.service';
+import { TallyService } from './tally.service';
 
 describe('TallyCounterService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TallyCounterService = TestBed.get(TallyCounterService);
+    const service: TallyService = TestBed.get(TallyService);
     expect(service).toBeTruthy();
   });
 });

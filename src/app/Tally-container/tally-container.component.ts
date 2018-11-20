@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './reach-it-container.component.html',
   styleUrls: ['./reach-it-container.component.css']
 })
-export class ReachItContainerComponent implements OnInit {
+export class TallyContainerComponent implements OnInit {
 
   constructor() { }
 

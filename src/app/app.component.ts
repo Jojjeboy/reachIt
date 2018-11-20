@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
-import { TallyCounter } from './tally-counter';
+import { Tally } from './Tally';
 import { UUIDService } from './uuid.service';
+import { TallyService } from './tally.service';
 
 @Component({
   selector: 'app-root',
@@ -11,23 +12,47 @@ import { UUIDService } from './uuid.service';
 export class AppComponent {
   appTitle = 'reachIt';
 
-  constructor(private localStorageService: LocalStorageService, private uuidService: UUIDService) {
+  constructor(
+    private localStorageService: LocalStorageService,
+    private uuidService: UUIDService,
+    private tallyService: TallyService) {
 
-    const examples = Array<TallyCounter>();
+    const examples = Array<Tally>();
 
     examples.push(
-      new TallyCounter ('PushUp', 25, 25, true, uuidService.UUID(), 0, new Date(Date.now() - 12 * 3600 * 1000))
+      new Tally ({
+        name: 'PushUp',
+        increseBy: 25,
+        decreseBy: 25,
+        resetEveryDay: true,
+        uuid: uuidService.UUID(),
+        value: 100,
+        lastTouched: new Date(Date.now() - 12 * 3600 * 1000)
+      })
     );
+
     examples.push(
-      new TallyCounter ('Ab-rolls', 10, 10, true, uuidService.UUID(), 0, new Date(Date.now() - 3 * 3600 * 1000))
+      new Tally ({
+        name: 'Ab-rolls',
+        increseBy: 10,
+        decreseBy: 10,
+        resetEveryDay: true,
+        uuid: uuidService.UUID(),
+        value: 30,
+        lastTouched: new Date(Date.now() - 12 * 3600 * 1000)
+      })
     );
 
-
-    const config = {
-      defaultData: examples
+    const reachIt = {
+      data: examples,
+      config: {
+        defaultResetEveryday: true,
+        defaultValue: 0
+      }
     };
 
-    localStorageService.init(config, this.appTitle);
+    localStorageService.init(reachIt, this.appTitle);
+    tallyService.init();
 
 
   }

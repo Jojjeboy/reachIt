@@ -5,10 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './reach-it-item.component.html',
   styleUrls: ['./reach-it-item.component.css']
 })
-export class ReachItItemComponent implements OnInit {
+export class TallyItemComponent {
 
   constructor() { }
 
-  ngOnInit() {
-  }
 }

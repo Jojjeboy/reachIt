@@ -1,4 +1,4 @@
-export class TallyCounter {
+export class Tally {
     private name: string;
     private increseBy: number;
     private decreseBy: number;
@@ -7,21 +7,15 @@ export class TallyCounter {
     private value: number;
     private lastTouched: Date;
 
-    constructor(name: string,
-         increseBy: number,
-         decreseBy: number,
-         resetEveryDay: boolean,
-         uuid: string,
-         value: number,
-         lastTouched: Date) {
+    constructor(obj: any) {
 
-            this.setName(name);
-            this.setIncreseBy(increseBy);
-            this.setDecreseBy(decreseBy);
-            this.setResetEveryday(resetEveryDay);
-            this.setUuid(uuid);
-            this.setValue(value);
-            this.setLastTouched(lastTouched);
+            this.setName(obj.name);
+            this.setIncreseBy(obj.increseBy);
+            this.setDecreseBy(obj.decreseBy);
+            this.setResetEveryday(obj.resetEveryDay);
+            this.setUuid(obj.uuid);
+            this.setValue(obj.value);
+            this.setLastTouched(obj.lastTouched);
     }
 
     public getName(): string {
@@ -77,6 +71,6 @@ export class TallyCounter {
     }
 
     public setLastTouched(lastTouched: Date): void {
-        this.lastTouched = lastTouched;
+        this.lastTouched = new Date(lastTouched);
     }
 }
