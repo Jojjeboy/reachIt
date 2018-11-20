@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Tally } from './Tally';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   public localStorage: any;
   private key: string;
-  private config: any;
+  private app: any;
 
   constructor() {
     if (!localStorage) {
@@ -16,29 +17,22 @@ export class LocalStorageService {
     this.localStorage = localStorage;
   }
 
-  public init(config: Object, key: string): any {
+  public init(app: Object, key: string): any {
     if (!key) {
       throw new Error('Local Storage key not provided');
     }
     this.key = key;
     if (localStorage.getItem(key) === null) {
-      this.config = config;
-      this.emptyItemsInKey();
+      this.app = app;
+      localStorage.setItem(this.key, JSON.stringify({ app: this.app }));
     } else {
-      // Check if config is already set
-      const lsConfig: any = this.getConfig();
-      if (typeof lsConfig === 'object') {
-        this.config = lsConfig;
-      } else {
-        this.saveConfig(config);
-        this.config = config;
-      }
+      this.app = JSON.parse(localStorage.getItem(this.key));
     }
   }
 
   public getAll(): Array<Object> {
     const lSData: Object = JSON.parse(localStorage.getItem(this.key));
-    return lSData['data'];
+    return lSData['app']['data'];
   }
 
   public add(obj: Object): void {
@@ -56,7 +50,7 @@ export class LocalStorageService {
   }
 
   public writeLS(array: Array<Object>): void {
-    localStorage.setItem(this.key, JSON.stringify({ config: this.config, data: array }));
+    localStorage.setItem(this.key, JSON.stringify( this.app ));
   }
 
   public updateItem(key: String, propertyName: any, obj: Object) {
@@ -78,7 +72,7 @@ export class LocalStorageService {
       let foundItem = false,
       iter = 0;
     while (iter < lsItems.length) {
-      if (key !== lsItems[iter]['id']) {
+      if (key !== lsItems[iter]['uuid']) {
         newData.push(lsItems[iter]);
       } else {
         foundItem = true;
@@ -94,7 +88,7 @@ export class LocalStorageService {
       newData = [];
       let updated = false;
     for (let i = 0; i < lsItems.length; i++) {
-      if (lsItems[i]['id'] === obj['id']) {
+      if (lsItems[i]['uuid'] === obj['uuid']) {
         lsItems[i] = obj;
         updated = true;
       }
@@ -103,12 +97,12 @@ export class LocalStorageService {
     return updated;
   }
 
-  public getItem(id: String): any {
+  getItem(id: String): any {
     const lsItems = this.getAll(),
       newData = [],
       foundIt = false;
     for (let i = 0; i < lsItems.length; i++) {
-      if (lsItems[i]['id'] === id) {
+      if (lsItems[i]['uuid'] === id) {
         return lsItems[i];
       }
     }
@@ -120,7 +114,8 @@ export class LocalStorageService {
   }
 
   public emptyItemsInKey(): void {
-    localStorage.setItem(this.key, JSON.stringify({ config: this.config, data: [] }));
+    this.app.data = [];
+    localStorage.setItem(this.key, JSON.stringify({ app: this.app }));
   }
 
   public clear(): any {
@@ -129,10 +124,10 @@ export class LocalStorageService {
 
   public getConfig(): any {
     const lSData: Object = JSON.parse(localStorage.getItem(this.key));
-    if (!lSData['config']) {
+    if (!lSData['app']['config']) {
       return false;
     }
-    return lSData['config'];
+    return lSData['app']['config'];
   }
 
   public uppdatePropertyOnAll(propertyName: string, newValue: any): void {
@@ -147,10 +142,5 @@ export class LocalStorageService {
     if (touched) {
       this.writeLS(lsData);
     }
-  }
-
-  public saveConfig(config: Object): void {
-    const lSData: Object = JSON.parse(localStorage.getItem(this.key));
-    localStorage.setItem(this.key, JSON.stringify({ config: config, data: lSData['data'] }));
   }
 }
