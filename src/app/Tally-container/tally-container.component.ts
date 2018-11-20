@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-reach-it-container',
-  templateUrl: './reach-it-container.component.html',
-  styleUrls: ['./reach-it-container.component.css']
+  selector: 'app-tally-container',
+  templateUrl: './tally-container.component.html',
+  styleUrls: ['./tally-container.component.css']
 })
 export class TallyContainerComponent implements OnInit {
 
