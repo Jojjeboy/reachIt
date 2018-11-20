@@ -28,7 +28,8 @@ export class AppComponent {
         resetEveryDay: true,
         uuid: uuidService.UUID(),
         value: 100,
-        lastTouched: new Date(Date.now() - 24 * 3600 * 1000)
+        lastTouched: new Date(Date.now() - 24 * 3600 * 1000),
+        goal: 100
       })
     );
 
@@ -40,27 +41,17 @@ export class AppComponent {
         resetEveryDay: true,
         uuid: uuidService.UUID(),
         value: 30,
-        lastTouched: new Date(Date.now() - 12 * 3600 * 1000)
+        lastTouched: new Date(Date.now() - 12 * 3600 * 1000),
+        goal: 50
       })
       );
 
-      const reachIt = {
-        data: examples,
-        config: {
-          defaultResetEveryday: true,
-          defaultValue: 0
-        }
-      };
-
-      localStorageService.init(reachIt, this.appTitle);
+      localStorageService.init(examples, this.appTitle);
       tallyService.init();
 
       this.tallies = tallyService.convertLSToTallies(localStorageService.getAll());
 
     }
-
-
-
 
     increse(tally) {
       this.tallyService.increse(tally);

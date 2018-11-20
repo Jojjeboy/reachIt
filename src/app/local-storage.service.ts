@@ -8,7 +8,7 @@ import { Tally } from './Tally';
 export class LocalStorageService {
   public localStorage: any;
   private key: string;
-  private app: any;
+  private data: any;
 
   constructor() {
     if (!localStorage) {
@@ -17,22 +17,22 @@ export class LocalStorageService {
     this.localStorage = localStorage;
   }
 
-  public init(app: Object, key: string): any {
+  public init(data: Array<Object>, key: string): any {
     if (!key) {
       throw new Error('Local Storage key not provided');
     }
     this.key = key;
     if (localStorage.getItem(key) === null) {
-      this.app = app;
-      localStorage.setItem(this.key, JSON.stringify({ app: this.app }));
+      this.data = data;
+      localStorage.setItem(this.key, JSON.stringify( data ));
     } else {
-      this.app = JSON.parse(localStorage.getItem(this.key));
+      this.data = JSON.parse(localStorage.getItem(this.key));
     }
   }
 
   public getAll(): Array<Object> {
-    const lSData: Object = JSON.parse(localStorage.getItem(this.key));
-    return lSData['data'];
+    const lSData: Array<Object> = JSON.parse(localStorage.getItem(this.key));
+    return lSData;
   }
 
   public add(obj: Object): void {
@@ -50,8 +50,8 @@ export class LocalStorageService {
   }
 
   public writeLS(array: Array<Object>): void {
-    this.app['data'] = array;
-    localStorage.setItem(this.key, JSON.stringify( this.app ));
+    this.data = array;
+    localStorage.setItem(this.key, JSON.stringify( this.data ));
   }
 
   public updateItem(key: String, propertyName: any, obj: Object) {
@@ -115,20 +115,12 @@ export class LocalStorageService {
   }
 
   public emptyItemsInKey(): void {
-    this.app.data = [];
-    localStorage.setItem(this.key, JSON.stringify({ app: this.app }));
+    this.data = [];
+    localStorage.setItem(this.key, JSON.stringify(this.data));
   }
 
   public clear(): any {
     this.localStorage.removeItem(this.key);
-  }
-
-  public getConfig(): any {
-    const lSData: Object = JSON.parse(localStorage.getItem(this.key));
-    if (!lSData['app']['config']) {
-      return false;
-    }
-    return lSData['app']['config'];
   }
 
   public uppdatePropertyOnAll(propertyName: string, newValue: any): void {

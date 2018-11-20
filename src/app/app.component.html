@@ -1,20 +1,8 @@
-<header class="masthead mb-auto">
-    <div class="inner">
-        <h3 class="masthead-brand">Cover</h3>
-        <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">Contact</a>
-        </nav>
-    </div>
-</header>
-
 <main role="main" class="inner cover">
     <div class="text-center">
-        <h1 class="cover-heading">Cover your page.</h1>
-        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <h1 class="cover-heading">Reach it</h1>
+        <p class="lead">Reach daily goal with this simpel and beautiful Tally</p>
     </div>
-    <!-- <app-tally-container [tallies]="tallies"></app-tally-container> -->
     <div class="list-group">
         <app-tally-item *ngFor="let tally of tallies" [tally]="tally" (tallyIncrese)="increse(tally)" (tallyDecrese)="decrese(tally)" class="list-group-item list-group-item-action flex-column align-items-start"></app-tally-item>
     </div>

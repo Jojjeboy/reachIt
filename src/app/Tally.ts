@@ -6,6 +6,7 @@ export class Tally {
     private uuid: string;
     private value: number;
     private lastTouched: Date;
+    private goal: number
 
     constructor(obj: any) {
 
@@ -16,6 +17,7 @@ export class Tally {
             this.setUuid(obj.uuid);
             this.setValue(obj.value);
             this.setLastTouched(obj.lastTouched);
+            this.setGoal(obj.goal);
     }
 
     public getName(): string {
@@ -76,5 +78,13 @@ export class Tally {
 
     public touch(): void {
         this.lastTouched = new Date();
+    }
+
+    public getGoal(): number {
+        return this.goal;
+    }
+
+    public setGoal(goal: number): void {
+        this.goal = goal;
     }
 }
