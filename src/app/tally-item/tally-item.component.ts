@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-reach-it-item',
-  templateUrl: './tally-item.component.html',
-  styleUrls: ['./tally-item.component.css']
+  templateUrl: './reach-it-item.component.html',
+  styleUrls: ['./reach-it-item.component.css']
 })
 export class TallyItemComponent {
 
