@@ -2,13 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { TallyContainerComponent } from './Tally-container/tally-container.component';
 import { TallyItemComponent } from './tally-item/tally-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TallyContainerComponent,
     TallyItemComponent
   ],
   imports: [

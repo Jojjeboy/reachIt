@@ -14,7 +14,10 @@
         <h1 class="cover-heading">Cover your page.</h1>
         <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
     </div>
-    <app-tally-container></app-tally-container>
+    <!-- <app-tally-container [tallies]="tallies"></app-tally-container> -->
+    <div class="list-group">
+        <app-tally-item *ngFor="let tally of tallies" [tally]="tally" (tallyIncrese)="increse(tally)" (tallyDecrese)="decrese(tally)" class="list-group-item list-group-item-action flex-column align-items-start"></app-tally-item>
+    </div>
 </main>
 
 <footer class="mastfoot mt-auto">

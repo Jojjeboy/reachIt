@@ -73,4 +73,8 @@ export class Tally {
     public setLastTouched(lastTouched: Date): void {
         this.lastTouched = new Date(lastTouched);
     }
+
+    public touch(): void {
+        this.lastTouched = new Date();
+    }
 }

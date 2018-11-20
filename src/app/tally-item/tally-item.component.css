@@ -1,0 +1,11 @@
+.tally-item i.fa {
+    line-height: 75px;
+}
+
+.tally-item i.fa-angle-double-up {
+    color: green;
+}
+
+.tally-item i.fa-angle-double-down {
+    color: red;
+}

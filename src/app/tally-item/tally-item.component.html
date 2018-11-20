@@ -1,24 +1,27 @@
-<div class="container">
+<div class="container tally-item">
     <div class="row">
         <div class="col-sm">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Armhävningar</h5>
+                <h5 class="mb-1">{{ tally.name }}: {{ tally.value }}</h5>
                 <small>3 days ago</small>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
-            down
+        <div class="col">
+            <i class="fa fa-3x fa-angle-double-down" (click)="arrowDown()"></i>
         </div>
-        <div class="col-sm-3">
-            One of three columns
+        <div class="col">
+            <div class="percentify p80 cfs75 thinner hover active">
+                <span class="text ifs50">80%</span>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-3">
-            One of three columns
-        </div>
-        <div class="col-sm-3">
-            Up
+        <div class="col text-right">
+            <i class="fa fa-3x fa-angle-double-up" (click)="arrowUp()"></i>
         </div>
     </div>
 </div>

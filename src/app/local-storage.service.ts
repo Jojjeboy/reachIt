@@ -32,7 +32,7 @@ export class LocalStorageService {
 
   public getAll(): Array<Object> {
     const lSData: Object = JSON.parse(localStorage.getItem(this.key));
-    return lSData['app']['data'];
+    return lSData['data'];
   }
 
   public add(obj: Object): void {
@@ -50,6 +50,7 @@ export class LocalStorageService {
   }
 
   public writeLS(array: Array<Object>): void {
+    this.app['data'] = array;
     localStorage.setItem(this.key, JSON.stringify( this.app ));
   }
 

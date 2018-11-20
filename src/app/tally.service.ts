@@ -12,7 +12,7 @@ export class TallyService {
 
   init(): void {
     const lsTallyCounters = <Array<Object>> this.localStorageService.getAll();
-    const tallyCounters = <Array<Tally>> this.convertLSToTallyCounters(lsTallyCounters);
+    const tallyCounters = <Array<Tally>> this.convertLSToTallies(lsTallyCounters);
 
     this.resetOldTallyCounter(tallyCounters);
   }
@@ -31,8 +31,28 @@ export class TallyService {
     }
   }
 
+  increse(tally: Tally): void {
+    let tallyValue = tally.getValue();
+    const tallyIncreseBy = tally.getIncreseBy();
+    tallyValue += tallyIncreseBy;
+    tally.setValue(tallyValue);
+    tally.touch();
+    this.localStorageService.update(this.convertToLsTally(tally));
+  }
 
-  convertLSToTallyCounters(tallyCounters: Array<object>): Array<Tally> {
+  decrese(tally: Tally): void {
+    let tallyValue = tally.getValue();
+    const tallyIncreseBy = tally.getDecreseBy();
+    if (tallyValue > 0) {
+      tallyValue -= tallyIncreseBy;
+      tally.setValue(tallyValue);
+      tally.touch();
+      this.localStorageService.update(this.convertToLsTally(tally));
+    }
+  }
+
+
+  convertLSToTallies(tallyCounters: Array<object>): Array<Tally> {
     const returnArr = new Array<Tally>();
     for (const obj of tallyCounters) {
       const tallyCounter = new Tally(obj);
