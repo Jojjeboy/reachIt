@@ -66,4 +66,17 @@ export class TallyService {
     const po = Object.assign({}, tallyCounter);
     return po;
   }
+
+  getEmptyTally() {
+    return new Tally ({
+      name: null,
+      increseBy: null,
+      decreseBy: null,
+      resetEveryDay: null,
+      uuid: null,
+      value: null,
+      lastTouched: new Date(),
+      goal: null
+    });
+  }
 }

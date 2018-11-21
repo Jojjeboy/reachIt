@@ -6,7 +6,7 @@ import { TalliesComponent } from './tallies/tallies.component';
 import { AddTallyComponent } from './add-tally/add-tally.component';
 import { EditTallyComponent } from './edit-tally/edit-tally.component';
 import { TallyComponent } from './tally/tally.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 const appRoutes: Routes = [
@@ -40,6 +40,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes, {enableTracing: true}
     ),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
