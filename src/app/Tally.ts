@@ -6,7 +6,7 @@ export class Tally {
     private uuid: string;
     private value: number;
     private lastTouched: Date;
-    private goal: number
+    private goal: number;
 
     constructor(obj: any) {
 

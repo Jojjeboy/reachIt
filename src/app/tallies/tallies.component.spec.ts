@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TallyItemComponent } from './tally-item.component';
+import { TalliesComponent } from './tallies.component';
 
 describe('ReachItItemComponent', () => {
-  let component: TallyItemComponent;
-  let fixture: ComponentFixture<TallyItemComponent>;
+  let component: TalliesComponent;
+  let fixture: ComponentFixture<TalliesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TallyItemComponent ]
+      declarations: [ TalliesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TallyItemComponent);
+    fixture = TestBed.createComponent(TalliesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

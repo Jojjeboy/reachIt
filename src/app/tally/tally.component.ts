@@ -1,19 +1,22 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tally } from '../Tally';
 
 @Component({
-  selector: 'app-tally-item',
-  templateUrl: './tally-item.component.html',
-  styleUrls: ['./tally-item.component.css']
+  selector: 'app-tally',
+  templateUrl: './tally.component.html',
+  styleUrls: ['./tally.component.css']
 })
-export class TallyItemComponent {
-
-  constructor() { }
+export class TallyComponent implements OnInit {
 
   @Output() tallyIncrese = new EventEmitter<Tally>();
   @Output() tallyDecrese = new EventEmitter<Tally>();
-
   @Input() tally: Tally;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
 
   arrowUp() {
     this.tallyIncrese.emit(this.tally);
@@ -22,5 +25,6 @@ export class TallyItemComponent {
   arrowDown() {
     this.tallyDecrese.emit(this.tally);
   }
+
 
 }

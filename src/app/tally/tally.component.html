@@ -1,0 +1,25 @@
+<div class="container tally-item">
+    <div class="row">
+        <div class="col-sm">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ tally.name }}: {{ tally.value }}</h5>
+                <small>3 days ago</small>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <i class="fa fa-3x fa-angle-double-down" (click)="arrowDown(tally)"></i>
+        </div>
+        <div class="col text-right">
+            <i class="fa fa-3x fa-angle-double-up" (click)="arrowUp(tally)"></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+</div>

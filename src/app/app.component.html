@@ -1,15 +1,16 @@
 <main role="main" class="inner cover">
     <div class="text-center">
-        <h1 class="cover-heading">Reach it</h1>
-        <p class="lead">Reach daily goal with this simpel and beautiful Tally</p>
+        <h1 class="cover-heading">Reach it &nbsp; &nbsp;
+            <i class="fa fa-plus" data-toggle="modal" data-target="#exampleModal"></i></h1>
+        <p class="lead ">Reach daily goal with this simpel and beautiful Tally</p>
     </div>
-    <div class="list-group">
-        <app-tally-item *ngFor="let tally of tallies" [tally]="tally" (tallyIncrese)="increse(tally)" (tallyDecrese)="decrese(tally)" class="list-group-item list-group-item-action flex-column align-items-start"></app-tally-item>
+    <div class="list-group ">
+        <router-outlet></router-outlet>
     </div>
 </main>
 
-<footer class="mastfoot mt-auto">
-    <div class="inner">
-        <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+<footer class="mastfoot mt-auto ">
+    <div class="inner ">
+        <p>Cover template for <a href="https://getbootstrap.com/ ">Bootstrap</a>, by <a href="https://twitter.com/mdo ">@mdo</a>.</p>
     </div>
 </footer>
