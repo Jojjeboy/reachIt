@@ -1,1 +1,13 @@
-<app-tally *ngFor="let tally of tallies" [tally]="tally" (tallyIncrese)="increse(tally) " (tallyDecrese)="decrese(tally) " class="list-group-item list-group-item-action flex-column align-items-start "></app-tally>
+<div class="list-group">
+    <app-tally *ngFor="let tally of tallies" [tally]="tally" (tallyIncrese)="increse(tally) " (tallyDecrese)="decrese(tally) "
+        class="list-group-item list-group-item-action flex-column align-items-start "></app-tally>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <a routerLink="/add">
+                <img src="assets/plus.svg" class="plus-img" />
+            </a>
+        </div>
+    </div>
+</div>

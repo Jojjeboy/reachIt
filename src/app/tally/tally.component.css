@@ -3,9 +3,13 @@
 }
 
 .tally-item i.fa-angle-double-up {
-    color: green;
+    color: black;
 }
 
 .tally-item i.fa-angle-double-down {
-    color: red;
+    color: #d0d0d0;
+}
+
+.progress-bar {
+    background-color: #ff0099;
 }
