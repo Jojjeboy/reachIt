@@ -11,9 +11,7 @@ import { UUIDService } from '../uuid.service';
 export class AddTallyComponent implements OnInit {
   tally: Tally;
 
-  constructor(private tallyService: TallyService, private uuidService: UUIDService) { 
-
-  }
+  constructor(private tallyService: TallyService, private uuidService: UUIDService) {}
 
   ngOnInit() {
     this.tally = this.tallyService.getEmptyTally();
