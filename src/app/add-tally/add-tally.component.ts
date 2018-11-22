@@ -16,4 +16,8 @@ export class AddTallyComponent implements OnInit {
   ngOnInit() {
     this.tally = this.tallyService.getEmptyTally();
   }
+
+  addTally() {
+    console.log(this.tally);
+  }
 }

@@ -1,5 +1,5 @@
 <div class="container">
-    <form name="add-tally">
+    <form name="add-tally" #tallyForm="ngForm">
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="name">Namn</label>
@@ -32,7 +32,7 @@
             <input type="number" class="form-control"  [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
         </div>
         
-        <button type="submit" class="btn btn-block btn-primary">Lägg till</button>
+        <button type="submit" class="btn btn-block btn-primary" (click)="addTally(); heroForm.reset()">Lägg till</button>
     </form>
 </div>
 
