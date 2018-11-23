@@ -29,8 +29,8 @@ export class TalliesComponent {
         decreseBy: 25,
         resetEveryDay: true,
         uuid: uuidService.UUID(),
-        value: 100,
-        lastTouched: new Date(Date.now() - 24 * 3600 * 1000),
+        value: 95,
+        lastTouched: new Date(Date.now() - 5 * 3600 * 1000),
         goal: 100
       })
     );

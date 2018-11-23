@@ -12,9 +12,21 @@ export class TallyComponent implements OnInit {
   @Output() tallyDecrese = new EventEmitter<Tally>();
   @Input() tally: Tally;
 
+  percentage = 0.00;
   constructor() { }
 
   ngOnInit() {
+    if (this.tally.getGoal() && this.tally.getValue()) {
+      if (this.tally.getGoal() > this.tally.getValue()) {
+
+      this.percentage = (this.tally.getValue() / this.tally.getGoal() * 100);
+      this.percentage = parseInt(this.percentage.toString(), 10);
+      console.log(this.tally.getName());
+      console.log(this.percentage);
+
+    }
+  }
+
   }
 
 
