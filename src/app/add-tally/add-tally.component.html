@@ -25,14 +25,14 @@
         </div>
         <div class="form-group">
             <label for="value">Startvärde</label>
-            <input type="number" class="form-control" [(ngModel)]="tally.value" id="value" name="value" placeholder="0" required>
+            <input type="number" min="0" class="form-control" [(ngModel)]="tally.value" id="value" name="value" placeholder="0" required>
         </div>
         <div class="form-group">
             <label for="goal">Mål</label>
             <input type="number" class="form-control"  [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
         </div>
         
-        <button type="submit" class="btn btn-block btn-primary" (click)="addTally(); heroForm.reset()">Lägg till</button>
+        <button type="submit" class="btn btn-block btn-primary" (click)="addTally(); tallyForm.reset()">Lägg till</button>
     </form>
 </div>
 

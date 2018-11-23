@@ -18,6 +18,6 @@ export class AddTallyComponent implements OnInit {
   }
 
   addTally() {
-    console.log(this.tally);
+    this.tallyService.save(this.tally);
   }
 }

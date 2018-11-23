@@ -79,4 +79,8 @@ export class TallyService {
       goal: null
     });
   }
+
+  save(tally: Tally): void {
+    this.localStorageService.update(this.convertToLsTally(tally));
+  }
 }
