@@ -81,6 +81,6 @@ export class TallyService {
   }
 
   save(tally: Tally): void {
-    this.localStorageService.update(this.convertToLsTally(tally));
+    this.localStorageService.add(this.convertToLsTally(tally));
   }
 }

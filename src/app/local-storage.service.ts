@@ -17,6 +17,14 @@ export class LocalStorageService {
     this.localStorage = localStorage;
   }
 
+  public initWithoutData(key: string) {
+    if (!key) {
+      throw new Error('Local Storage key not provided');
+    }
+    this.key = key;
+    this.data = JSON.parse(localStorage.getItem(this.key));
+  }
+
   public init(data: Array<Object>, key: string): any {
     if (!key) {
       throw new Error('Local Storage key not provided');
@@ -54,18 +62,18 @@ export class LocalStorageService {
     localStorage.setItem(this.key, JSON.stringify( this.data ));
   }
 
-  public updateItem(key: String, propertyName: any, obj: Object) {
-    const lsItems = this.getAll();
-    for (let i = 0; i < lsItems.length; i++) {
-      const item: any = lsItems[i];
-      if (item[propertyName] === key) {
-        lsItems[i] = obj;
-        this.writeLS(lsItems);
-        break;
-      }
-    }
+  // public updateItem(key: String, propertyName: any, obj: Object) {
+  //   const lsItems = this.getAll();
+  //   for (let i = 0; i < lsItems.length; i++) {
+  //     const item: any = lsItems[i];
+  //     if (item[propertyName] === key) {
+  //       lsItems[i] = obj;
+  //       this.writeLS(lsItems);
+  //       break;
+  //     }
+  //   }
 
-  }
+  // }
 
   public removeItem(key: String): boolean {
     const lsItems = this.getAll(),
