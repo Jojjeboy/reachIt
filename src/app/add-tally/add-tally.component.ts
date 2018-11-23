@@ -20,11 +20,15 @@ export class AddTallyComponent {
     private router: Router) {
       localStorage.initWithoutData('reachIt');
       this.tally = this.tallyService.getEmptyTally();
+      this.tally.setUuid(uuidService.UUID());
     }
 
   addTally() {
     this.tallyService.save(this.tally);
     this.router.navigate(['/']);
+  }
 
+  toggleResetEveryday(value: boolean) {
+    this.tally.setResetEveryday(value);
   }
 }

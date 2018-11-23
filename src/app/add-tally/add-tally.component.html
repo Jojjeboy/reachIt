@@ -19,8 +19,8 @@
         <div class="form-group">
             <label>Nollställ varje dag</label>
             <div class="btn-group special" role="group" aria-label="...">
-                <button type="button" class="btn btn-outline-primary active">Ja</button>
-                <button type="button" class="btn btn-outline-primary">Nej</button>
+                <button type="button" (click)="toggleResetEveryday(true)" class="btn btn-outline-primary" [ngClass]="{'active':tally.resetEveryDay === true}">Ja</button>
+                <button type="button" (click)="toggleResetEveryday(false)" class="btn btn-outline-primary" [ngClass]="{'active':tally.resetEveryDay === false}">Nej</button>
             </div>
         </div>
         <div class="form-group">
@@ -31,9 +31,11 @@
             <label for="goal">Mål</label>
             <input type="number" class="form-control"  [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
         </div>
+        <div class="form-group">
+            <label for="uuid">UUID</label>
+            <input type="text" class="form-control" disabled="disabled" [value]="tally.uuid" id="uuid">
+        </div>
         
         <button type="submit" class="btn btn-block btn-primary" (click)="addTally(); tallyForm.reset()">Lägg till</button>
     </form>
 </div>
-
-<pre>{{ tally | json }} </pre>
