@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from  '@angular/router';
+import { Router } from '@angular/router';
 import { TallyService } from '../tally.service';
 import { Tally } from '../Tally';
 import { UUIDService } from '../uuid.service';

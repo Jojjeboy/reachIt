@@ -1,0 +1,19 @@
+label {
+    display: block;
+}
+
+.btn-group.special {
+    display: flex;
+}
+
+.special .btn {
+    flex: 1
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form):not(.ng-pristine)  {
+    border-left: 5px solid #a94442; /* red */
+  }

@@ -21,7 +21,7 @@ const appRoutes: Routes = [
       data: { title: 'Add Tally' }
     },
     {
-      path: 'edit',
+      path: 'edit/:id',
       component: EditTallyComponent,
       data: { title: 'Edit Tally' }
     },
