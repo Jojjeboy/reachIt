@@ -21,10 +21,6 @@ export class TallyComponent implements OnInit {
 
       this.percentage = (this.tally.getValue() / this.tally.getGoal() * 100);
       this.percentage = parseInt(this.percentage.toString(), 10);
-
-      console.log(this.tally.getName());
-      console.log(this.percentage);
- 
     }
   }
 
