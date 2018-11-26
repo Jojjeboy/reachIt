@@ -16,9 +16,24 @@ const appRoutes: Routes = [
       data: { title: 'Start Page' }
     },
     {
+      path: 'reachIt',
+      component: TalliesComponent,
+      data: { title: 'Start Page' }
+    },
+    {
       path: 'add',
       component: AddTallyComponent,
       data: { title: 'Add Tally' }
+    },
+    {
+      path: 'reachIt/add',
+      component: AddTallyComponent,
+      data: { title: 'Add Tally' }
+    },
+    {
+      path: 'reachIt/edit/:id',
+      component: EditTallyComponent,
+      data: { title: 'Edit Tally' }
     },
     {
       path: 'edit/:id',
