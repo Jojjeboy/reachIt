@@ -16,7 +16,7 @@ const appRoutes: Routes = [
       data: { title: 'Start Page' }
     },
     {
-      path: 'reachIt',
+      path: 'reachIt/',
       component: TalliesComponent,
       data: { title: 'Start Page' }
     },
