@@ -35,5 +35,9 @@ export class EditTallyComponent implements OnInit {
       this.tallyService.update(this.tally);
       this.router.navigate(['/']);
     }
+    deleteTally(): void {
+      this.tallyService.delete(this.tally);
+      this.router.navigate(['/']);
+    }
 
 }

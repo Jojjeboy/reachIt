@@ -87,4 +87,8 @@ export class TallyService {
   update(tally: Tally): void {
     this.localStorageService.update(this.convertToLsTally(tally));
   }
+
+  delete(tally: Tally): void {
+    this.localStorageService.removeItem(tally.getUuid());
+  }
 }
