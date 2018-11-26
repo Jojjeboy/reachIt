@@ -40,4 +40,8 @@ export class EditTallyComponent implements OnInit {
       this.router.navigate(['/']);
     }
 
+    toggleResetEveryday(value: boolean) {
+      this.tally.setResetEveryday(value);
+    }
+
 }

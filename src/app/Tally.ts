@@ -1,12 +1,12 @@
 export class Tally {
-    private name: string;
-    private increseBy: number;
-    private decreseBy: number;
-    private resetEveryDay: boolean;
-    private uuid: string;
-    private value: number;
-    private lastTouched: Date;
-    private goal: number;
+    name: string;
+    increseBy: number;
+    decreseBy: number;
+    resetEveryDay: boolean;
+    uuid: string;
+    value: number;
+    lastTouched: Date;
+    goal: number;
 
     constructor(obj: any) {
 
