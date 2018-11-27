@@ -29,11 +29,23 @@ export class TallyComponent implements OnInit {
 
   arrowUp() {
     this.tallyIncrese.emit(this.tally);
+    this.recalculatePercentage();
   }
 
   arrowDown() {
     this.tallyDecrese.emit(this.tally);
+    this.recalculatePercentage();
   }
+
+  recalculatePercentage() {
+    if (this.tally.getGoal() && this.tally.getValue()) {
+      if (this.tally.getGoal() > this.tally.getValue()) {
+
+      this.percentage = (this.tally.getValue() / this.tally.getGoal() * 100);
+      this.percentage = parseInt(this.percentage.toString(), 10);
+    }
+  }
+}
 
 
 }
