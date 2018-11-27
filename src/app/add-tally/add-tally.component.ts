@@ -25,6 +25,7 @@ export class AddTallyComponent {
 
   addTally() {
     this.tallyService.save(this.tally);
+
     this.router.navigate(['/']);
   }
 

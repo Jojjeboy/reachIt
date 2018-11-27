@@ -74,7 +74,7 @@ export class TallyService {
       decreseBy: null,
       resetEveryDay: null,
       uuid: null,
-      value: null,
+      value: 0,
       lastTouched: new Date(),
       goal: null
     });

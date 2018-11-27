@@ -13,3 +13,7 @@
 .progress-bar {
     background-color: #ff0099;
 }
+
+small.goal {
+    font-size: 45%;
+}

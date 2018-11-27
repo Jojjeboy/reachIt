@@ -5,6 +5,15 @@
 
 /* Links */
 
+a {
+    color: #ff0099;
+}
+
+a:hover {
+    color: #fd5dbd;
+    text-decoration: none;
+}
+
 
 /* Custom default button */
 
