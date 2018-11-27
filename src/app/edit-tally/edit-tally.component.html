@@ -1,44 +1,53 @@
-<div class="container">
-  <form name="edit-tally" #tallyForm="ngForm">
-      <div class="form-row">
-          <div class="form-group col-md-12">
-              <label for="name">Namn</label>
-              <input [(ngModel)]="tally.name" type="text" class="form-control" name="name" id="name" placeholder="Armhävningar" required />
-          </div>
-      </div>
-      <div class="form-row">
-          <div class="form-group col-md-6">
-              <label for="increseBy">Öka med</label>
-              <input type="number" [(ngModel)]="tally.increseBy" class="form-control" name="increseBy" id="increseBy" placeholder="25" required>
-          </div>
-          <div class="form-group col-md-6">
-              <label for="decreseBy">Minska med</label>
-              <input type="number" [(ngModel)]="tally.decreseBy" class="form-control" name="decreseBy" id="decreseBy" placeholder="25" required>
-          </div>
-      </div>
-      <div class="form-group">
-          <label>Nollställ varje dag</label>
-          <div class="btn-group special" role="group" aria-label="...">
-              <button type="button" (click)="toggleResetEveryday(true)" class="btn btn-outline-primary" [ngClass]="{'active':tally.resetEveryDay === true}">Ja</button>
-              <button type="button" (click)="toggleResetEveryday(false)" class="btn btn-outline-primary" [ngClass]="{'active':tally.resetEveryDay === false}">Nej</button>
-          </div>
-      </div>
-      <div class="form-group">
-          <label for="value">Startvärde</label>
-          <input type="number" min="0" class="form-control" [(ngModel)]="tally.value" id="value" name="value" placeholder="0" required>
-      </div>
-      <div class="form-group">
-          <label for="goal">Mål</label>
-          <input type="number" class="form-control"  [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
-      </div>
-      <div class="form-group">
-          <label for="uuid">UUID</label>
-          <input type="text" class="form-control" disabled="disabled" [value]="tally.uuid" id="uuid">
-      </div>
-      
-      <button type="submit" class="btn btn-block btn-primary" (click)="updateTally()">Uppdatera</button>
-      <button type="submit" *ngIf="!confirm" class="btn btn-block btn-warning" (click)="confirmDeleteTally()">Radera</button>
-      <button type="submit" *ngIf="confirm" class="btn btn-block btn-danger" (click)="deleteTally()">Radera</button>
+<div class="container mb-5">
+    <form name="edit-tally" #tallyForm="ngForm">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="name">Namn</label>
+                <input [(ngModel)]="tally.name" type="text" class="form-control" name="name" id="name" placeholder="Armhävningar" required />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="increseBy">Öka med</label>
+                <input type="number" [(ngModel)]="tally.increseBy" class="form-control" name="increseBy" id="increseBy" placeholder="25" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="decreseBy">Minska med</label>
+                <input type="number" [(ngModel)]="tally.decreseBy" class="form-control" name="decreseBy" id="decreseBy" placeholder="25" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Nollställ varje dag</label>
+            <div class="btn-group special" role="group" aria-label="...">
+                <button type="button" (click)="toggleResetEveryday(true)" class="btn btn-outline-primary" [ngClass]="{'active':tally.resetEveryDay === true}">Ja</button>
+                <button type="button" (click)="toggleResetEveryday(false)" class="btn btn-outline-primary" [ngClass]="{'active':tally.resetEveryDay === false}">Nej</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="value">Startvärde</label>
+            <input type="number" min="0" class="form-control" [(ngModel)]="tally.value" id="value" name="value" placeholder="0" required>
+        </div>
+        <div class="form-group">
+            <label for="goal">Mål</label>
+            <input type="number" class="form-control" [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
+        </div>
+        <div class="form-group">
+            <label for="uuid">UUID</label>
+            <input type="text" class="form-control" disabled="disabled" [value]="tally.uuid" id="uuid">
+        </div>
 
-  </form>
+        <div class="form-group">
+            <button type="submit" class="btn btn-block btn-primary" (click)="updateTally()">Uppdatera</button>
+            <button type="submit" *ngIf="!confirm" class="btn btn-block btn-warning" (click)="confirmDeleteTally()">Radera</button>
+        </div>
+        <div class="form-row" *ngIf="confirm">
+            <div class="form-group col-md-6">
+                <a href="./" class="btn btn-outline-primary btn-block block">Ångra</a>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-danger btn-block" (click)="deleteTally()">Radera</button>
+            </div>
+        </div>
+
+    </form>
 </div>

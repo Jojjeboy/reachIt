@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-sm">
             <div class="d-flex w-100 justify-content-between">
-                <h4 class="mb-1">{{ tally.name }}</h4>
-                <small>{{ tally.lastTouched | timeAgo }} | <a [routerLink]="['/edit', tally.uuid]" class="edit">Redigera</a></small>
+                <h4 class="mb-0">{{ tally.name }}<small class="last-touched d-block">{{ tally.lastTouched | timeAgo }}</small></h4>
+                <small> <a [routerLink]="['/edit', tally.uuid]" class="edit mt-2 d-block">Redigera</a></small>
             </div>
         </div>
     </div>

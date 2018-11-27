@@ -18,7 +18,8 @@
     background-color: #1aa900;
 }
 
-small.goal {
+small.goal,
+small.last-touched {
     font-size: 45%;
 }
 
