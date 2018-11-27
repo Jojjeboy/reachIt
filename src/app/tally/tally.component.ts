@@ -16,14 +16,7 @@ export class TallyComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if (this.tally.getGoal() && this.tally.getValue()) {
-      if (this.tally.getGoal() > this.tally.getValue()) {
-
-      this.percentage = (this.tally.getValue() / this.tally.getGoal() * 100);
-      this.percentage = parseInt(this.percentage.toString(), 10);
-    }
-  }
-
+    this.recalculatePercentage();
   }
 
 
@@ -39,13 +32,10 @@ export class TallyComponent implements OnInit {
 
   recalculatePercentage() {
     if (this.tally.getGoal() && this.tally.getValue()) {
-      if (this.tally.getGoal() > this.tally.getValue()) {
-
       this.percentage = (this.tally.getValue() / this.tally.getGoal() * 100);
       this.percentage = parseInt(this.percentage.toString(), 10);
     }
   }
-}
 
 
 }
