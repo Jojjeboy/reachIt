@@ -13,6 +13,7 @@ import { LocalStorageService } from '../local-storage.service';
 })
 export class EditTallyComponent implements OnInit {
   tally: Tally;
+  confirm = false;
 
   constructor(
     private tallyService: TallyService,
@@ -42,6 +43,10 @@ export class EditTallyComponent implements OnInit {
 
     toggleResetEveryday(value: boolean) {
       this.tally.setResetEveryday(value);
+    }
+
+    confirmDeleteTally() {
+      this.confirm = true;
     }
 
 }

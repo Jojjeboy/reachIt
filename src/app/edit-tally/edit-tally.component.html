@@ -37,6 +37,8 @@
       </div>
       
       <button type="submit" class="btn btn-block btn-primary" (click)="updateTally()">Uppdatera</button>
-      <button type="submit" class="btn btn-block btn-danger" (click)="deleteTally()">Radera</button>
+      <button type="submit" *ngIf="!confirm" class="btn btn-block btn-warning" (click)="confirmDeleteTally()">Radera</button>
+      <button type="submit" *ngIf="confirm" class="btn btn-block btn-danger" (click)="deleteTally()">Radera</button>
+
   </form>
 </div>
