@@ -15,9 +15,14 @@
 }
 
 .progress-bar.done {
-    background-color: green;
+    background-color: #1aa900;
 }
 
 small.goal {
     font-size: 45%;
+}
+
+h2 {
+    position: relative;
+    top: 15px;
 }

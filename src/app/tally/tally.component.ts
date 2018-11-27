@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tally } from '../Tally';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @Component({
   selector: 'app-tally',
