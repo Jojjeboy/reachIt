@@ -8,12 +8,10 @@ import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-edit-tally',
-  templateUrl: './edit-tally.component.html',
-  styleUrls: ['./edit-tally.component.css']
+  templateUrl: './edit-tally.component.html'
 })
 export class EditTallyComponent implements OnInit {
   tally: Tally;
-  confirm = false;
 
   constructor(
     private tallyService: TallyService,
@@ -24,7 +22,6 @@ export class EditTallyComponent implements OnInit {
       localStorageService.initWithoutData('reachIt');
     }
 
-
     ngOnInit() {
       const id = this.route.snapshot.paramMap.get('id');
       const objTally: Object = this.localStorageService.getItem(id);
@@ -32,21 +29,12 @@ export class EditTallyComponent implements OnInit {
       this.tally = tmpArr[0];
     }
 
-    updateTally(): void {
+    updateTally(tally: Tally): void {
       this.tallyService.update(this.tally);
       this.router.navigate(['/']);
     }
-    deleteTally(): void {
+    deleteTally(tally: Tally): void {
       this.tallyService.delete(this.tally);
       this.router.navigate(['/']);
     }
-
-    toggleResetEveryday(value: boolean) {
-      this.tally.setResetEveryday(value);
-    }
-
-    confirmDeleteTally() {
-      this.confirm = true;
-    }
-
 }

@@ -1,4 +1,4 @@
-<form name="add-tally" #tallyForm="ngForm">
+<form name="{{ method }}-tally" #tallyForm="ngForm">
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="name">Namn</label>
@@ -34,7 +34,9 @@
         <label for="goal">Mål</label>
         <input type="number" class="form-control" [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
     </div>
-    <div class="form-row">
+
+    <!-- ADD Tally-->
+    <div class="form-row" *ngIf="isFormType('add')">
         <div class="col">
             <div class="form-group">
                 <a routerLink="/" class="btn btn-outline-pink btn-block block">Ångra</a>
@@ -43,6 +45,22 @@
         <div class="col">
             <div class="form-group">
                 <button type="submit" class="btn btn-block btn-primary" (click)="addTally(); tallyForm.reset()">Lägg till</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT Tally-->
+    <div class="form-row" *ngIf="isFormType('edit')">
+        <div class="col">
+            <div class="form-group">
+                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-warning" (click)="confirmDeleteTally()">Radera</button>
+                <button type="submit" *ngIf="confirmed" class="btn btn-danger btn-block" (click)="deleteTally()">Radera</button>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-primary" (click)="updateTally()">Uppdatera</button>
+                <a routerLink="/" *ngIf="confirmed" class="btn btn-outline-pink btn-block block">Ångra</a>
             </div>
         </div>
     </div>

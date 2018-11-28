@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tally } from '../Tally';
 
 @Component({
@@ -6,17 +6,22 @@ import { Tally } from '../Tally';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
 
   constructor() { }
 
   @Input() tally: Tally;
+  @Input() method: string;
 
   @Output() tallyAdd = new EventEmitter<Tally>();
   @Output() tallyUpdate = new EventEmitter<Tally>();
   @Output() tallyDelete = new EventEmitter<Tally>();
 
+  private confirmed = false;
 
+  ngOnInit() {
+
+  }
 
   addTally() {
     this.tallyAdd.emit(this.tally);
@@ -32,6 +37,14 @@ export class FormComponent {
 
   toggleResetEveryday(value: boolean) {
     this.tally.setResetEveryday(value);
+  }
+
+  isFormType(formType: string): boolean {
+    return this.method === formType;
+  }
+
+  confirmDeleteTally() {
+    this.confirmed = true;
   }
 
 
