@@ -85,10 +85,15 @@ export class TallyService {
   }
 
   update(tally: Tally): void {
+    this.touch(tally);
     this.localStorageService.update(this.convertToLsTally(tally));
   }
 
   delete(tally: Tally): void {
     this.localStorageService.removeItem(tally.getUuid());
+  }
+
+  touch(tally: Tally): void {
+    tally.setLastTouched(new Date());
   }
 }
