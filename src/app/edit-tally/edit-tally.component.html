@@ -35,18 +35,20 @@
             <label for="goal">Mål</label>
             <input type="number" class="form-control" [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-block btn-primary" (click)="updateTally()">Uppdatera</button>
-            <button type="submit" *ngIf="!confirm" class="btn btn-block btn-warning" (click)="confirmDeleteTally()">Radera</button>
-        </div>
-        <div class="form-row" *ngIf="confirm">
-            <div class="form-group col-md-6">
-                <a href="./" class="btn btn-outline-primary btn-block block">Ångra</a>
-            </div>
-            <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-danger btn-block" (click)="deleteTally()">Radera</button>
-            </div>
-        </div>
 
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <button type="submit" *ngIf="!confirm" class="btn btn-block btn-warning" (click)="confirmDeleteTally()">Radera</button>
+                    <button type="submit" *ngIf="confirm" class="btn btn-danger btn-block" (click)="deleteTally()">Radera</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <button type="submit" *ngIf="!confirm" class="btn btn-block btn-primary" (click)="updateTally()">Uppdatera</button>
+                    <a routerLink="/" *ngIf="confirm" class="btn btn-outline-pink btn-block block">Ångra</a>
+                </div>
+            </div>
+        </div>
     </form>
 </div>

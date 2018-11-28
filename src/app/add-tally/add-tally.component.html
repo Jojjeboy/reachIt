@@ -35,7 +35,17 @@
             <label for="goal">Mål</label>
             <input type="number" class="form-control" [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
         </div>
-
-        <button type="submit" class="btn btn-block btn-primary" (click)="addTally(); tallyForm.reset()">Lägg till</button>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <a routerLink="/" class="btn btn-outline-pink btn-block block">Ångra</a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-primary" (click)="addTally(); tallyForm.reset()">Lägg till</button>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
