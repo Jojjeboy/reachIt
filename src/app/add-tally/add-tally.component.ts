@@ -7,8 +7,7 @@ import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-add-tally',
-  templateUrl: './add-tally.component.html',
-  styleUrls: ['./add-tally.component.css']
+  templateUrl: './add-tally.component.html'
 })
 export class AddTallyComponent {
   tally: Tally;
@@ -23,13 +22,8 @@ export class AddTallyComponent {
       this.tally.setUuid(uuidService.UUID());
     }
 
-  addTally() {
+  addTally(tally: Tally) {
     this.tallyService.save(this.tally);
-
     this.router.navigate(['/']);
-  }
-
-  toggleResetEveryday(value: boolean) {
-    this.tally.setResetEveryday(value);
   }
 }

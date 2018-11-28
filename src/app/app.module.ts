@@ -8,6 +8,7 @@ import { EditTallyComponent } from './edit-tally/edit-tally.component';
 import { TallyComponent } from './tally/tally.component';
 import { FormsModule } from '@angular/forms';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { FormComponent } from './form/form.component';
 
 
 const appRoutes: Routes = [
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     TallyComponent,
     AddTallyComponent,
     EditTallyComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    FormComponent
   ],
   imports: [
     BrowserModule,
