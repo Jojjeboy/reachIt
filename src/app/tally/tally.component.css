@@ -1,3 +1,8 @@
+h2 {
+    position: relative;
+    top: 15px;
+}
+
 .tally-item i.fa {
     line-height: 75px;
 }
@@ -23,23 +28,4 @@
 small.goal,
 small.last-touched {
     font-size: 45%;
-}
-
-h2 {
-    position: relative;
-    top: 15px;
-}
-
-small.decreseNr,
-small.increseNr {
-    position: relative;
-    bottom: 13px;
-}
-
-small.decreseNr {
-    left: 10px;
-}
-
-small.increseNr {
-    right: 10px;
 }
