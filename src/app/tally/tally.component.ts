@@ -32,7 +32,7 @@ export class TallyComponent implements OnInit {
   }
 
   recalculatePercentage() {
-    if (this.tally.getGoal() && this.tally.getValue()) {
+    if (this.tally.getGoal() !== null && this.tally.getValue() !== null) {
       this.percentage = (this.tally.getValue() / this.tally.getGoal() * 100);
       this.percentage = parseInt(this.percentage.toString(), 10);
     }
