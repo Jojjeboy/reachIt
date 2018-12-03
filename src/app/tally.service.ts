@@ -6,15 +6,14 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class TallyService {
+  private lsTallyCounters;
+  private tallyCounters;
 
-  constructor(private localStorageService: LocalStorageService) { }
+  constructor(private localStorageService: LocalStorageService) {
+    this.lsTallyCounters = <Array<Object>> this.localStorageService.getAll();
+    this.tallyCounters = <Array<Tally>> this.convertLSToTallies(this.lsTallyCounters);
 
-
-  init(): void {
-    const lsTallyCounters = <Array<Object>> this.localStorageService.getAll();
-    const tallyCounters = <Array<Tally>> this.convertLSToTallies(lsTallyCounters);
-
-    this.resetOldTallyCounter(tallyCounters);
+    this.resetOldTallyCounter(this.tallyCounters);
   }
 
   isOld(tallyCounter: Tally): Boolean {
@@ -29,6 +28,15 @@ export class TallyService {
         this.localStorageService.update(this.convertToLsTally(tallyCounter));
       }
     }
+  }
+
+  isAllDone(): boolean {
+    for (const tallyCounter of this.tallyCounters) {
+      if (tallyCounter.getValue() < tallyCounter.getGoal()) {
+        return false;
+      }
+    }
+    return true;
   }
 
   increse(tally: Tally): void {
@@ -54,7 +62,7 @@ export class TallyService {
 
   convertLSToTallies(tallyCounters: Array<object>): Array<Tally> {
     const returnArr = new Array<Tally>();
-    for (const obj of tallyCounters) {
+    for (const obj of this.tallyCounters) {
       const tallyCounter = new Tally(obj);
       tallyCounter.setLastTouched(new Date(tallyCounter.getLastTouched()));
       returnArr.push(tallyCounter);

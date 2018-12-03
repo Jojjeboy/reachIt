@@ -49,7 +49,6 @@ export class TalliesComponent {
       );
 
       localStorageService.init(examples, this.appTitle);
-      tallyService.init();
 
       this.tallies = tallyService.convertLSToTallies(localStorageService.getAll());
 
