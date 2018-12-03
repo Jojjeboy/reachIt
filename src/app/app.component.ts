@@ -1,4 +1,4 @@
-import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { Tally } from './Tally';
 import { TallyService } from './tally.service';
@@ -12,14 +12,12 @@ import { UUIDService } from './uuid.service';
 export class AppComponent implements OnInit {
 
   constructor(
-    private renderer: Renderer2,
-    private el: ElementRef,
-    private tallyService: TallyService) {}
+    private tallyService: TallyService,
+    private localstorageservice: LocalStorageService) {}
 
   ngOnInit() {
-    if (this.tallyService.isAllDone()) {
-      this.renderer.addClass(document.body, 'doneanddone');
-    }
+    this.localstorageservice.initWithoutData('reachIt');
+    this.tallyService.toggleBodyClass();
   }
 
-  }
+}

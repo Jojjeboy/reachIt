@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2, ElementRef, RendererFactory2  } from '@angular/core';
 import { Tally } from './Tally';
 import { LocalStorageService } from './local-storage.service';
 
@@ -6,14 +6,27 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class TallyService {
-  private lsTallyCounters;
-  private tallyCounters;
 
-  constructor(private localStorageService: LocalStorageService) {
-    this.lsTallyCounters = <Array<Object>> this.localStorageService.getAll();
-    this.tallyCounters = <Array<Tally>> this.convertLSToTallies(this.lsTallyCounters);
+  private renderer: Renderer2;
 
-    this.resetOldTallyCounter(this.tallyCounters);
+  constructor(
+    private localStorageService: LocalStorageService,
+    private rendererFactory: RendererFactory2,
+    private el: ElementRef) {
+      this.renderer = rendererFactory.createRenderer(null, null);
+    }
+
+
+  init(): void {
+    const lsTallyCounters = <Array<Object>> this.localStorageService.getAll();
+    const tallyCounters = <Array<Tally>> this.convertLSToTallies(lsTallyCounters);
+
+    this.resetOldTallyCounter(tallyCounters);
+  }
+
+  getTallies(): Array<Tally> {
+    const lsTallyCounters = <Array<Object>> this.localStorageService.getAll();
+    return <Array<Tally>> this.convertLSToTallies(lsTallyCounters);
   }
 
   isOld(tallyCounter: Tally): Boolean {
@@ -30,15 +43,6 @@ export class TallyService {
     }
   }
 
-  isAllDone(): boolean {
-    for (const tallyCounter of this.tallyCounters) {
-      if (tallyCounter.getValue() < tallyCounter.getGoal()) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   increse(tally: Tally): void {
     let tallyValue = tally.getValue();
     const tallyIncreseBy = tally.getIncreseBy();
@@ -46,6 +50,7 @@ export class TallyService {
     tally.setValue(tallyValue);
     tally.touch();
     this.localStorageService.update(this.convertToLsTally(tally));
+    this.toggleBodyClass();
   }
 
   decrese(tally: Tally): void {
@@ -56,13 +61,14 @@ export class TallyService {
       tally.setValue(tallyValue);
       tally.touch();
       this.localStorageService.update(this.convertToLsTally(tally));
+      this.toggleBodyClass();
     }
   }
 
 
   convertLSToTallies(tallyCounters: Array<object>): Array<Tally> {
     const returnArr = new Array<Tally>();
-    for (const obj of this.tallyCounters) {
+    for (const obj of tallyCounters) {
       const tallyCounter = new Tally(obj);
       tallyCounter.setLastTouched(new Date(tallyCounter.getLastTouched()));
       returnArr.push(tallyCounter);
@@ -104,4 +110,27 @@ export class TallyService {
   touch(tally: Tally): void {
     tally.setLastTouched(new Date());
   }
+
+  isAllDone(tallyCounters: Array<Tally>): any {
+    for (const tallyCounter of tallyCounters) {
+      if (tallyCounter.getValue() < tallyCounter.getGoal()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  toggleBodyClass(): void {
+    if (this.localStorageService.getKey() === null) {
+      this.localStorageService.initWithoutData('reachIt');
+    }
+    if (this.isAllDone(this.getTallies())) {
+      this.renderer.addClass(document.body, 'doneanddone');
+    } else {
+      this.renderer.removeClass(document.body, 'doneanddone');
+    }
+  }
+
+
+
 }

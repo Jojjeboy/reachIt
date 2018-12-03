@@ -17,6 +17,10 @@ export class LocalStorageService {
     this.localStorage = localStorage;
   }
 
+  public getKey(): string {
+    return this.key;
+  }
+
   public initWithoutData(key: string) {
     if (!key) {
       throw new Error('Local Storage key not provided');
