@@ -36,6 +36,9 @@ export class TallyService {
     const tallyIncreseBy = tally.getIncreseBy();
     tallyValue += tallyIncreseBy;
     tally.setValue(tallyValue);
+    if (tallyValue > tally.getTopScore()) {
+      tally.setTopScore(tally.getValue());
+    }
     tally.touch();
     this.localStorageService.update(this.convertToLsTally(tally));
   }

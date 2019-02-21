@@ -7,6 +7,7 @@ export class Tally {
     value: number;
     lastTouched: Date;
     goal: number;
+    topScore: number;
 
     constructor(obj: any) {
 
@@ -18,6 +19,7 @@ export class Tally {
             this.setValue(obj.value);
             this.setLastTouched(obj.lastTouched);
             this.setGoal(obj.goal);
+            this.setTopScore(obj.topScore);
     }
 
     public getName(): string {
@@ -86,5 +88,13 @@ export class Tally {
 
     public setGoal(goal: number): void {
         this.goal = goal;
+    }
+
+    public getTopScore(): number {
+        return this.topScore;
+    }
+
+    public setTopScore(topScore: number): void {
+        this.topScore = topScore;
     }
 }

@@ -31,7 +31,8 @@ export class TalliesComponent {
         uuid: uuidService.UUID(),
         value: 95,
         lastTouched: new Date(Date.now() - 5 * 3600 * 1000),
-        goal: 100
+        goal: 100,
+        topScore: 95
       })
     );
 
@@ -44,7 +45,8 @@ export class TalliesComponent {
         uuid: uuidService.UUID(),
         value: 30,
         lastTouched: new Date(Date.now() - 12 * 3600 * 1000),
-        goal: 50
+        goal: 50,
+        topScore: 95
       })
       );
 

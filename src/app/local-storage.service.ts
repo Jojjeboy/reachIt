@@ -30,7 +30,7 @@ export class LocalStorageService {
       throw new Error('Local Storage key not provided');
     }
     this.key = key;
-    if (localStorage.getItem(key) === null) {
+    if (localStorage.getItem(this.key) === null) {
       this.data = data;
       localStorage.setItem(this.key, JSON.stringify( data ));
     } else {
