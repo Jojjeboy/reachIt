@@ -22,6 +22,10 @@ h2 {
 }
 
 .progress-bar.done {
+    background-color: #007bff;
+}
+
+.progress-bar.over {
     background-color: #1aa900;
 }
 
