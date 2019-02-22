@@ -29,3 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Rebuild
 `ng build --prod --output-path docs --base-href "https://jojjeboy.github.io/reachIt/"`
+`git add .`
+`git commit-"message"`
+`git push`
