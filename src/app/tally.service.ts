@@ -79,7 +79,8 @@ export class TallyService {
       uuid: null,
       value: 0,
       lastTouched: new Date(),
-      goal: null
+      goal: null,
+      topScore: 0
     });
   }
 
