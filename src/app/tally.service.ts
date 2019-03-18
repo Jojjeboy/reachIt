@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Tally } from './Tally';
 import { LocalStorageService } from './local-storage.service';
+import { History } from './History';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class TallyService {
   resetOldTallyCounter(tallyCounters: Array<Tally>): void {
     for (const tallyCounter of tallyCounters) {
       if (this.isOld(tallyCounter)) {
+        this.addToHistory(tallyCounter);
         tallyCounter.setValue(0);
         this.localStorageService.update(this.convertToLsTally(tallyCounter));
       }
@@ -54,6 +56,15 @@ export class TallyService {
     }
   }
 
+  addToHistory(tally: Tally): void {
+    let tallyHistory:Array<History> = tally.getHistory();
+    const newHistoryEntry = new History({
+      value: tally.getValue(),
+      date: tally.getLastTouched()
+    }); 
+    tallyHistory.push(newHistoryEntry);
+    tally.setHistory(tallyHistory);
+  } 
 
   convertLSToTallies(tallyCounters: Array<object>): Array<Tally> {
     const returnArr = new Array<Tally>();
@@ -79,6 +90,7 @@ export class TallyService {
       uuid: null,
       value: 0,
       lastTouched: new Date(),
+      history: [],
       goal: null,
       topScore: 0
     });

@@ -31,6 +31,10 @@ export class TalliesComponent {
         uuid: uuidService.UUID(),
         value: 95,
         lastTouched: new Date(Date.now() - 5 * 3600 * 1000),
+        history: [
+          {value: 90, date: new Date(Date.now() - 5 * 3600 * 1000)},
+          {value: 110, date: new Date(Date.now() - 12 * 3600 * 1000)},
+        ],
         goal: 100,
         topScore: 95
       })
@@ -45,6 +49,9 @@ export class TalliesComponent {
         uuid: uuidService.UUID(),
         value: 30,
         lastTouched: new Date(Date.now() - 12 * 3600 * 1000),
+        history: [
+          {value: 40, date: new Date(Date.now() - 12 * 3600 * 1000)},
+        ],
         goal: 50,
         topScore: 95
       })

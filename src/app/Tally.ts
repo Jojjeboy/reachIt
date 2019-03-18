@@ -1,3 +1,5 @@
+import { History } from "./History";
+
 export class Tally {
     name: string;
     increseBy: number;
@@ -6,6 +8,7 @@ export class Tally {
     uuid: string;
     value: number;
     lastTouched: Date;
+    history: Array<History>;
     goal: number;
     topScore: number;
 
@@ -18,6 +21,7 @@ export class Tally {
             this.setUuid(obj.uuid);
             this.setValue(obj.value);
             this.setLastTouched(obj.lastTouched);
+            this.setHistory(obj.history);
             this.setGoal(obj.goal);
             this.setTopScore(obj.topScore);
     }
@@ -78,6 +82,14 @@ export class Tally {
         this.lastTouched = new Date(lastTouched);
     }
 
+    public getHistory(): Array<History>{
+        return this.history;
+    }
+
+    public setHistory(history: Array<History>): void{
+        this.history = history;
+    }
+
     public touch(): void {
         this.lastTouched = new Date();
     }
@@ -96,5 +108,20 @@ export class Tally {
 
     public setTopScore(topScore: number): void {
         this.topScore = topScore;
+    }
+
+    public getAverage(): number {
+        const tallyHistory:Array<History> = this.getHistory();
+        let totalValue = 0;
+        let average = 0;
+
+        if(tallyHistory.length > 0){
+            tallyHistory.forEach( element => {
+                totalValue += element.value;
+            });
+        }
+
+        average = Math.abs(Math.floor(totalValue / tallyHistory.length));
+        return average;
     }
 }
