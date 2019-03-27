@@ -16,12 +16,11 @@ export class FormComponent implements OnInit {
   @Output() tallyAdd = new EventEmitter<Tally>();
   @Output() tallyUpdate = new EventEmitter<Tally>();
   @Output() tallyDelete = new EventEmitter<Tally>();
+  @Output() tallyCleanHistory = new EventEmitter<Tally>();
 
   private confirmed = false;
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   addTally() {
     this.tallyAdd.emit(this.tally);
@@ -47,5 +46,7 @@ export class FormComponent implements OnInit {
     this.confirmed = true;
   }
 
-
+  cleanHistory() {
+    this.tallyCleanHistory.emit(this.tally);
+  }
 }

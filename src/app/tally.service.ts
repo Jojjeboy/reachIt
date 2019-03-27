@@ -57,14 +57,21 @@ export class TallyService {
   }
 
   addToHistory(tally: Tally): void {
-    let tallyHistory:Array<History> = tally.getHistory();
+    const tallyHistory: Array<History> = tally.getHistory();
     const newHistoryEntry = new History({
       value: tally.getValue(),
       date: tally.getLastTouched()
-    }); 
+    });
     tallyHistory.push(newHistoryEntry);
     tally.setHistory(tallyHistory);
-  } 
+    this.localStorageService.update(this.convertToLsTally(tally));
+  }
+
+  cleanHistory(tally: Tally): void {
+    tally.setHistory([]);
+    tally.touch();
+    this.localStorageService.update(this.convertToLsTally(tally));
+  }
 
   convertLSToTallies(tallyCounters: Array<object>): Array<Tally> {
     const returnArr = new Array<Tally>();

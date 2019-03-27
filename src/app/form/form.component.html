@@ -63,6 +63,12 @@
         </div>
         <div class="col">
             <div class="form-group">
+                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-outline-primary" (click)="cleanHistory()">Töm historik</button>
+                <a routerLink="/" *ngIf="confirmed" class="btn btn-outline-pink btn-block block">Ångra</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
                 <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-primary" (click)="updateTally()">Uppdatera</button>
                 <a routerLink="/" *ngIf="confirmed" class="btn btn-outline-pink btn-block block">Ångra</a>
             </div>

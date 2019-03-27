@@ -33,8 +33,14 @@ export class EditTallyComponent implements OnInit {
       this.tallyService.update(this.tally);
       this.router.navigate(['/']);
     }
+
     deleteTally(tally: Tally): void {
       this.tallyService.delete(this.tally);
+      this.router.navigate(['/']);
+    }
+
+    cleanHistory(tally: Tally): void {
+      this.tallyService.cleanHistory(this.tally);
       this.router.navigate(['/']);
     }
 }
