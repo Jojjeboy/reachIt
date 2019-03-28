@@ -4,7 +4,6 @@ import { Tally } from '../Tally';
 import { TallyService } from '../tally.service';
 import { UUIDService } from '../uuid.service';
 
-
 @Component({
   selector: 'app-tallies-item',
   templateUrl: './tallies.component.html',
@@ -29,14 +28,15 @@ export class TalliesComponent {
         decreseBy: 25,
         resetEveryDay: true,
         uuid: uuidService.UUID(),
-        value: 95,
+        value: 25,
         lastTouched: new Date(Date.now() - 5 * 3600 * 1000),
         history: [
-          {value: 90, date: new Date(Date.now() - 5 * 3600 * 1000)},
-          {value: 110, date: new Date(Date.now() - 12 * 3600 * 1000)},
+          {value: 50, date: new Date(Date.now() - 5 * 3600 * 1000)},
+          {value: 100, date: new Date(Date.now() - 10 * 3600 * 1000)},
+          {value: 125, date: new Date(Date.now() - 15 * 3600 * 1000)}
         ],
         goal: 100,
-        topScore: 95
+        topScore: 125
       })
     );
 
@@ -50,10 +50,11 @@ export class TalliesComponent {
         value: 30,
         lastTouched: new Date(Date.now() - 12 * 3600 * 1000),
         history: [
-          {value: 40, date: new Date(Date.now() - 12 * 3600 * 1000)},
+          {value: 45, date: new Date(Date.now() - 12 * 3600 * 1000)},
+          {value: 30, date: new Date(Date.now() - 36 * 3600 * 1000)}
         ],
         goal: 50,
-        topScore: 95
+        topScore: 90
       })
       );
 

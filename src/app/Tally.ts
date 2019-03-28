@@ -1,4 +1,4 @@
-import { History } from "./History";
+import { History } from './History';
 
 export class Tally {
     name: string;
@@ -82,11 +82,11 @@ export class Tally {
         this.lastTouched = new Date(lastTouched);
     }
 
-    public getHistory(): Array<History>{
+    public getHistory(): Array<History> {
         return this.history;
     }
 
-    public setHistory(history: Array<History>): void{
+    public setHistory(history: Array<History>): void {
         this.history = history;
     }
 
@@ -111,11 +111,11 @@ export class Tally {
     }
 
     public getAverage(): number {
-        const tallyHistory:Array<History> = this.getHistory();
+        const tallyHistory: Array<History> = this.getHistory();
         let totalValue = 0;
         let average = 0;
 
-        if(tallyHistory.length > 0){
+        if (tallyHistory.length > 0) {
             tallyHistory.forEach( element => {
                 totalValue += element.value;
             });
