@@ -33,10 +33,11 @@ export class TalliesComponent {
         history: [
           {value: 50, date: new Date(Date.now() - 5 * 3600 * 1000)},
           {value: 100, date: new Date(Date.now() - 10 * 3600 * 1000)},
-          {value: 125, date: new Date(Date.now() - 15 * 3600 * 1000)}
+          {value: 200, date: new Date(Date.now() - 15 * 3600 * 1000)}
         ],
         goal: 100,
-        topScore: 125
+        topScore: 125,
+        active: true
       })
     );
 
@@ -54,7 +55,8 @@ export class TalliesComponent {
           {value: 30, date: new Date(Date.now() - 36 * 3600 * 1000)}
         ],
         goal: 50,
-        topScore: 90
+        topScore: 90,
+        active: true
       })
       );
 

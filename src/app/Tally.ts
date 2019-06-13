@@ -11,6 +11,7 @@ export class Tally {
     history: Array<History>;
     goal: number;
     topScore: number;
+    active: boolean;
 
     constructor(obj: any) {
 
@@ -24,6 +25,7 @@ export class Tally {
             this.setHistory(obj.history);
             this.setGoal(obj.goal);
             this.setTopScore(obj.topScore);
+            this.setActive(obj.active);
     }
 
     public getName(): string {
@@ -123,5 +125,13 @@ export class Tally {
 
         average = Math.abs(Math.floor(totalValue / tallyHistory.length));
         return average;
+    }
+
+    public getActive(): boolean {
+        return this.active;
+    }
+
+    public setActive(active: boolean): void {
+        this.active = active;
     }
 }

@@ -38,7 +38,13 @@
         <label for="goal">Mål</label>
         <input type="number" class="form-control" [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
     </div>
-
+    <div class="form-group">
+        <label>Aktiv</label>
+        <div class="btn-group special" role="group" aria-label="...">
+            <button type="button" (click)="toggleActive(true)" class="btn btn-outline-success" [ngClass]="{'active':tally.active === true}">Ja</button>
+            <button type="button" (click)="toggleActive(false)" class="btn btn-outline-danger" [ngClass]="{'active':tally.active === false}">Nej</button>
+        </div>
+    </div>
     <!-- ADD Tally-->
     <div class="form-row" *ngIf="isFormType('add')">
         <div class="col">

@@ -99,7 +99,8 @@ export class TallyService {
       lastTouched: new Date(),
       history: [],
       goal: null,
-      topScore: 0
+      topScore: 0,
+      active: true
     });
   }
 

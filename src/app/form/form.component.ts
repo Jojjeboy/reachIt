@@ -38,6 +38,10 @@ export class FormComponent implements OnInit {
     this.tally.setResetEveryday(value);
   }
 
+  toggleActive(value: boolean) {
+    this.tally.setActive(value);
+  }
+
   isFormType(formType: string): boolean {
     return this.method === formType;
   }
