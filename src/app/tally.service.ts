@@ -10,6 +10,7 @@ export class TallyService {
 
   constructor(private localStorageService: LocalStorageService) { }
 
+  private showAll = false;
 
   init(): void {
     const lsTallyCounters = <Array<Object>> this.localStorageService.getAll();
@@ -119,5 +120,13 @@ export class TallyService {
 
   touch(tally: Tally): void {
     tally.setLastTouched(new Date());
+  }
+
+  toggleShowAll(): void {
+    this.showAll = !this.showAll;
+  }
+
+  getShowAll(): boolean {
+    return this.showAll;
   }
 }

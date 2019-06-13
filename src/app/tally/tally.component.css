@@ -21,6 +21,19 @@ h2 {
     background-color: #ff0099;
 }
 
+.tally-item.inactive .progress-bar {
+    background-color: #999;
+}
+
+.tally-item.inactive a {
+    color: rgb(184, 181, 181);
+}
+
+.tally-item.inactive {
+    color: rgb(184, 181, 181);
+    opacity: 0.7;
+}
+
 .progress-bar.done {
     background-color: #007bff;
 }

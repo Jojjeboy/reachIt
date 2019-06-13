@@ -13,6 +13,7 @@ export class TalliesComponent {
 
   appTitle = 'reachIt';
   tallies = Array<Tally>();
+  showAll = null;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -65,6 +66,8 @@ export class TalliesComponent {
 
       this.tallies = tallyService.convertLSToTallies(localStorageService.getAll());
 
+      this.showAll = tallyService.getShowAll();
+
     }
 
     increse(tally) {
@@ -73,5 +76,9 @@ export class TalliesComponent {
 
     decrese(tally) {
       this.tallyService.decrese(tally);
+    }
+
+    toggleShowAll() {
+      this.showAll = !this.showAll;
     }
 }

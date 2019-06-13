@@ -12,6 +12,7 @@ export class TallyComponent implements OnInit {
   @Output() tallyIncrese = new EventEmitter<Tally>();
   @Output() tallyDecrese = new EventEmitter<Tally>();
   @Input() tally: Tally;
+  @Input() showAll: boolean;
 
   percentage = 0.00;
   constructor() { }
