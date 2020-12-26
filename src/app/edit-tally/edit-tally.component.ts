@@ -4,7 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { TallyService } from '../tally.service';
 import { Tally } from '../Tally';
 import { UUIDService } from '../uuid.service';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../local-storage.service'
 
 @Component({
   selector: 'app-edit-tally',
@@ -19,7 +19,7 @@ export class EditTallyComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute) {
-      localStorageService.initWithoutData('reachIt');
+      localStorageService.init('reachIt');
     }
 
     ngOnInit() {

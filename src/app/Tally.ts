@@ -113,7 +113,7 @@ export class Tally {
     }
 
     public getAverage(): number {
-        if(!this.getHistory()){
+        if(this.getHistory() === undefined || this.getHistory().length < 1){
             return 0;
         }
         const tallyHistory: Array<History> = this.getHistory();

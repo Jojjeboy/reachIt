@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Tally } from './Tally';
-import { LocalStorageService } from './local-storage.service';
 import { History } from './History';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -123,10 +123,15 @@ export class TallyService {
   }
 
   toggleShowAll(): void {
+    let config = this.localStorageService.getConfig();
     this.showAll = !this.showAll;
+    config.showAll = this.showAll;
+    this.localStorageService.saveConfig(config);
+    console.log('this.showAll: ');
+    console.log(this.showAll);
   }
 
   getShowAll(): boolean {
-    return this.showAll;
+    return this.showAll
   }
 }

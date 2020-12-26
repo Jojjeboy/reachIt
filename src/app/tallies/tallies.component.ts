@@ -3,6 +3,7 @@ import { LocalStorageService } from '../local-storage.service';
 import { Tally } from '../Tally';
 import { TallyService } from '../tally.service';
 import { UUIDService } from '../uuid.service';
+import { fromEventPattern } from 'rxjs';
 
 @Component({
   selector: 'app-tallies-item',
@@ -13,7 +14,7 @@ export class TalliesComponent {
 
   appTitle = 'reachIt';
   tallies = Array<Tally>();
-  showAll = null;
+  public showAll: boolean;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -23,7 +24,7 @@ export class TalliesComponent {
     const examples = Array<Tally>();
 
     examples.push(
-      new Tally ({
+      new Tally({
         name: 'PushUp',
         increseBy: 25,
         decreseBy: 25,
@@ -32,9 +33,9 @@ export class TalliesComponent {
         value: 25,
         lastTouched: new Date(Date.now() - 5 * 3600 * 1000),
         history: [
-          {value: 50, date: new Date(Date.now() - 5 * 3600 * 1000)},
-          {value: 100, date: new Date(Date.now() - 10 * 3600 * 1000)},
-          {value: 200, date: new Date(Date.now() - 15 * 3600 * 1000)}
+          { value: 50, date: new Date(Date.now() - 5 * 3600 * 1000) },
+          { value: 100, date: new Date(Date.now() - 10 * 3600 * 1000) },
+          { value: 200, date: new Date(Date.now() - 15 * 3600 * 1000) }
         ],
         goal: 100,
         topScore: 125,
@@ -43,7 +44,7 @@ export class TalliesComponent {
     );
 
     examples.push(
-      new Tally ({
+      new Tally({
         name: 'Ab-rolls',
         increseBy: 10,
         decreseBy: 10,
@@ -52,33 +53,43 @@ export class TalliesComponent {
         value: 30,
         lastTouched: new Date(Date.now() - 12 * 3600 * 1000),
         history: [
-          {value: 45, date: new Date(Date.now() - 12 * 3600 * 1000)},
-          {value: 30, date: new Date(Date.now() - 36 * 3600 * 1000)}
+          { value: 45, date: new Date(Date.now() - 12 * 3600 * 1000) },
+          { value: 30, date: new Date(Date.now() - 36 * 3600 * 1000) }
         ],
         goal: 50,
         topScore: 90,
         active: true
       })
-      );
+    );
 
-      localStorageService.init(examples, this.appTitle);
-      tallyService.init();
+    localStorageService.init(this.appTitle);
+    tallyService.init();
 
-      this.tallies = tallyService.convertLSToTallies(localStorageService.getAll());
+    this.tallies = tallyService.convertLSToTallies(localStorageService.getAll());
 
-      this.showAll = tallyService.getShowAll();
+    this.showAll = this.localStorageService.getConfig().showAll;
 
-    }
+  }
 
-    increse(tally) {
-      this.tallyService.increse(tally);
-    }
+  increse(tally) {
+    this.tallyService.increse(tally);
+  }
 
-    decrese(tally) {
-      this.tallyService.decrese(tally);
-    }
+  decrese(tally) {
+    this.tallyService.decrese(tally);
+  }
 
-    toggleShowAll() {
-      this.showAll = !this.showAll;
-    }
+  eventCheck(event){
+
+    let config = this.localStorageService.getConfig();
+    this.showAll = event.target.checked;
+    config.showAll = this.showAll;
+    this.localStorageService.saveConfig(config);
+    console.log('this.showAll: ');
+    console.log(this.showAll);
+  }
+
+  getShowAll() {
+    return this.showAll;
+  }
 }

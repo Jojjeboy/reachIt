@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { TallyService } from '../tally.service';
 import { Tally } from '../Tally';
 import { UUIDService } from '../uuid.service';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../local-storage.service'
 
 @Component({
   selector: 'app-add-tally',
@@ -15,9 +15,9 @@ export class AddTallyComponent {
   constructor(
     private tallyService: TallyService,
     private uuidService: UUIDService,
-    private localStorage: LocalStorageService,
+    private localStorageService: LocalStorageService,
     private router: Router) {
-      localStorage.initWithoutData('reachIt');
+      localStorageService.init('reachIt');
       this.tally = this.tallyService.getEmptyTally();
       this.tally.setUuid(uuidService.UUID());
     }

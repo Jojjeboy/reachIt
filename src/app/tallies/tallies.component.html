@@ -9,10 +9,14 @@
                 <img src="assets/plus.png" class="plus" />
             </a>
             <p>&nbsp;</p>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider round" (click)="toggleShowAll()"></span>
+            
+
+            <label class="showAll">
+                <input type="checkbox" [(ngModel)]="showAll" (change)="eventCheck($event)" >
             </label>
+
+
+            
         </div>
     </div>
 </div>

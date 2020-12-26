@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Tally } from './Tally';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class LocalStorageService {
   public localStorage: any;
   private key: string;
-  private data: any;
+  private config: any;
 
   constructor() {
     if (!localStorage) {
@@ -17,30 +15,32 @@ export class LocalStorageService {
     this.localStorage = localStorage;
   }
 
-  public initWithoutData(key: string) {
+  public init(key: string): any {
     if (!key) {
       throw new Error('Local Storage key not provided');
     }
-    this.key = key;
-    this.data = JSON.parse(localStorage.getItem(this.key));
+    this.setKey(key);
+    if (localStorage.getItem(key) === null) {
+      // Init structure in localStaorage
+      this.emptyItemsInKey();
+    } else {
+      // Check if config is already set
+      const lsConfig: any = this.getConfig();
+      if (typeof lsConfig === 'object') {
+        this.config = lsConfig;
+      } 
+    }
   }
 
-  public init(data: Array<Object>, key: string): any {
-    if (!key) {
-      throw new Error('Local Storage key not provided');
-    }
+  
+
+  private setKey(key: string){
     this.key = key;
-    if (localStorage.getItem(this.key) === null) {
-      this.data = data;
-      localStorage.setItem(this.key, JSON.stringify( data ));
-    } else {
-      this.data = JSON.parse(localStorage.getItem(this.key));
-    }
   }
 
   public getAll(): Array<Object> {
-    const lSData: Array<Object> = JSON.parse(localStorage.getItem(this.key));
-    return lSData;
+    const lSData: Object = JSON.parse(localStorage.getItem(this.key));
+    return lSData['data'];
   }
 
   public add(obj: Object): void {
@@ -58,22 +58,21 @@ export class LocalStorageService {
   }
 
   public writeLS(array: Array<Object>): void {
-    this.data = array;
-    localStorage.setItem(this.key, JSON.stringify( this.data ));
+    localStorage.setItem(this.key, JSON.stringify({ config: this.config, data: array }));
   }
 
-  // public updateItem(key: String, propertyName: any, obj: Object) {
-  //   const lsItems = this.getAll();
-  //   for (let i = 0; i < lsItems.length; i++) {
-  //     const item: any = lsItems[i];
-  //     if (item[propertyName] === key) {
-  //       lsItems[i] = obj;
-  //       this.writeLS(lsItems);
-  //       break;
-  //     }
-  //   }
+  public updateItem(key: String, propertyName: any, obj: Object) {
+    const lsItems = this.getAll();
+    for (let i = 0; i < lsItems.length; i++) {
+      const item: any = lsItems[i];
+      if (item[propertyName] === key) {
+        lsItems[i] = obj;
+        this.writeLS(lsItems);
+        break;
+      }
+    }
 
-  // }
+  }
 
   public removeItem(key: String): boolean {
     const lsItems = this.getAll(),
@@ -106,7 +105,7 @@ export class LocalStorageService {
     return updated;
   }
 
-  getItem(id: String): any {
+  public getItem(id: String): any {
     const lsItems = this.getAll(),
       newData = [],
       foundIt = false;
@@ -123,12 +122,19 @@ export class LocalStorageService {
   }
 
   public emptyItemsInKey(): void {
-    this.data = [];
-    localStorage.setItem(this.key, JSON.stringify(this.data));
+    localStorage.setItem(this.key, JSON.stringify({ config: {showAll: false}, data: [] }));
   }
 
   public clear(): any {
     this.localStorage.removeItem(this.key);
+  }
+
+  public getConfig(): any {
+    const lSData: Object = JSON.parse(localStorage.getItem(this.key));
+    if (!lSData['config']) {
+      return false;
+    }
+    return lSData['config'];
   }
 
   public uppdatePropertyOnAll(propertyName: string, newValue: any): void {
@@ -143,5 +149,10 @@ export class LocalStorageService {
     if (touched) {
       this.writeLS(lsData);
     }
+  }
+
+  public saveConfig(config: Object): void {
+    const lSData: Object = JSON.parse(localStorage.getItem(this.key));
+    localStorage.setItem(this.key, JSON.stringify({ config: config, data: lSData['data'] }));
   }
 }
