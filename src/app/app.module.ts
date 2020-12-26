@@ -27,6 +27,7 @@ const appRoutes: Routes = [
       component: EditTallyComponent,
       data: { title: 'Edit Tally' }
     },
+    { path: '**', component: TalliesComponent }
   ];
 
 @NgModule({
