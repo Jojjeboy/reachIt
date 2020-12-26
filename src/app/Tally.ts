@@ -113,6 +113,9 @@ export class Tally {
     }
 
     public getAverage(): number {
+        if(!this.getHistory()){
+            return 0;
+        }
         const tallyHistory: Array<History> = this.getHistory();
         let totalValue = 0;
         let average = 0;
