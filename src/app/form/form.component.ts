@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Tally } from '../Tally';
 
 @Component({
@@ -6,7 +6,7 @@ import { Tally } from '../Tally';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent {
 
   constructor() { }
 
@@ -19,8 +19,6 @@ export class FormComponent implements OnInit {
   @Output() tallyCleanHistory = new EventEmitter<Tally>();
 
   private confirmed = false;
-
-  ngOnInit() {}
 
   addTally() {
     this.tallyAdd.emit(this.tally);
@@ -52,5 +50,9 @@ export class FormComponent implements OnInit {
 
   cleanHistory() {
     this.tallyCleanHistory.emit(this.tally);
+  }
+
+  validate() {
+
   }
 }
