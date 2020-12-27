@@ -64,19 +64,19 @@
         <div class="col">
             <div class="form-group">
                 <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-warning" (click)="confirmDeleteTally()">Radera</button>
-                <button type="submit" *ngIf="confirmed" class="btn btn-danger btn-block" (click)="deleteTally()">Radera</button>
+                <button type="submit" *ngIf="confirmed" class="btn btn-danger btn-block btn-block" (click)="deleteTally()">Radera</button>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
                 <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-outline-primary" [disabled]="!tallyHasHistory()" (click)="cleanHistory()">Töm historik</button>
-                <a routerLink="/" *ngIf="confirmed" class="btn btn-outline-pink btn-block block">Ångra</a>
+
             </div>
         </div>
         <div class="col">
             <div class="form-group">
                 <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-primary" (click)="updateTally()" [disabled]="!valid()">Uppdatera</button>
-                <a routerLink="/" *ngIf="confirmed" class="btn btn-outline-pink btn-block block">Ångra</a>
+                <a routerLink="/" *ngIf="confirmed" class="btn btn-outline-warning btn-block block">Ångra</a>
             </div>
         </div>
     </div>
