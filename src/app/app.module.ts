@@ -12,7 +12,6 @@ import { EditTallyComponent } from './edit-tally/edit-tally.component';
 import { TallyComponent } from './tally/tally.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
-
 const appRoutes: Routes = [
   {
       path: '',
