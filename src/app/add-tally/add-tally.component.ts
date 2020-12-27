@@ -22,7 +22,9 @@ export class AddTallyComponent {
       this.tally.setUuid(uuidService.UUID());
     }
 
-  addTally(tally: Tally) {
+  addTally() {
+    this.tallyService.touch(this.tally);
+    console.log(new Date());
     this.tallyService.save(this.tally);
     this.router.navigate(['/']);
   }

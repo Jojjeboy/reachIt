@@ -48,11 +48,29 @@ export class FormComponent {
     this.confirmed = true;
   }
 
+  tallyHasHistory() {
+    return this.tally.getHistory().length > 0;
+  }
+
   cleanHistory() {
     this.tallyCleanHistory.emit(this.tally);
   }
 
-  validate() {
+  valid() : boolean{
+    let valid = true;
+    if(!this.tally.getName() || this.tally.getName().length < 3){
+      valid = false;
+    }
+    if(!this.tally.getIncreseBy()){
+      valid = false;
+    }
+    if(!this.tally.getDecreseBy()){
+      valid = false;
+    }
+    if(!this.tally.getGoal()){
+      valid = false;
+    }
 
+    return valid;
   }
 }
