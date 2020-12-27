@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { FormComponent } from './form/form.component';
 import { ClearCacheComponent } from './clear/clear-cache.component';
+import { AddExampleComponent } from './add-example/add-example.component';
 
 
 const appRoutes: Routes = [
@@ -33,6 +34,11 @@ const appRoutes: Routes = [
       component: ClearCacheComponent,
       data: { title: 'Clear Cache' }
     },
+    {
+      path: 'example',
+      component: AddExampleComponent,
+      data: { title: 'Add example' }
+    },
     { path: '**', component: TalliesComponent }
   ];
 
@@ -45,7 +51,8 @@ const appRoutes: Routes = [
     EditTallyComponent,
     ClearCacheComponent,
     TimeAgoPipe,
-    FormComponent
+    FormComponent,
+    AddExampleComponent
   ],
   imports: [
     BrowserModule,

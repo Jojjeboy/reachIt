@@ -3,7 +3,7 @@ import { LocalStorageService } from '../local-storage.service';
 import { Tally } from '../Tally';
 import { TallyService } from '../tally.service';
 import { UUIDService } from '../uuid.service';
-import { fromEventPattern } from 'rxjs';
+
 
 @Component({
   selector: 'app-tallies-item',
@@ -80,13 +80,10 @@ export class TalliesComponent {
   }
 
   eventCheck(event){
-
     let config = this.localStorageService.getConfig();
     this.showAll = event.target.checked;
     config.showAll = this.showAll;
     this.localStorageService.saveConfig(config);
-    console.log('this.showAll: ');
-    console.log(this.showAll);
   }
 
   getShowAll() {

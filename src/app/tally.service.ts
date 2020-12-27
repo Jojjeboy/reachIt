@@ -19,10 +19,6 @@ export class TallyService {
     this.resetOldTallyCounter(tallyCounters);
   }
 
-  isOld(tallyCounter: Tally): Boolean {
-    const now = new Date();
-    return now.getDate() !== tallyCounter.getLastTouched().getDate();
-  }
 
   resetOldTallyCounter(tallyCounters: Array<Tally>): void {
     for (const tallyCounter of tallyCounters) {
@@ -31,6 +27,38 @@ export class TallyService {
         tallyCounter.setValue(0);
         this.localStorageService.update(this.convertToLsTally(tallyCounter));
       }
+    }
+  }
+
+  isOld(tallyCounter: Tally): Boolean {
+    const now = new Date();
+    return now.getDate() !== tallyCounter.getLastTouched().getDate();
+  }
+
+  addToHistory(tally: Tally): void {
+    const tallyHistory: Array<History> = tally.getHistory();
+    if(tallyHistory.length < 1){
+
+      const newHistoryEntry = new History({
+        value: tally.getValue(),
+        date: tally.getLastTouched()
+      });
+      tallyHistory.push(newHistoryEntry);
+      tally.setHistory(tallyHistory);
+      this.localStorageService.update(this.convertToLsTally(tally));  
+    }
+    else { 
+      tallyHistory.forEach( history => {
+        if(new Date(history.date).toDateString() !== tally.getLastTouched().toDateString()){
+          const newHistoryEntry = new History({
+            value: tally.getValue(),
+            date: tally.getLastTouched()
+          });
+          tallyHistory.push(newHistoryEntry);
+          tally.setHistory(tallyHistory);
+          this.localStorageService.update(this.convertToLsTally(tally));        
+        }
+      });
     }
   }
 
@@ -57,16 +85,7 @@ export class TallyService {
     }
   }
 
-  addToHistory(tally: Tally): void {
-    const tallyHistory: Array<History> = tally.getHistory();
-    const newHistoryEntry = new History({
-      value: tally.getValue(),
-      date: tally.getLastTouched()
-    });
-    tallyHistory.push(newHistoryEntry);
-    tally.setHistory(tallyHistory);
-    this.localStorageService.update(this.convertToLsTally(tally));
-  }
+  
 
   cleanHistory(tally: Tally): void {
     tally.setHistory([]);

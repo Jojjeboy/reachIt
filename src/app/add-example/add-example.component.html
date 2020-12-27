@@ -1,0 +1,22 @@
+<div class="container">
+    <h4>Välj vilket exempel du vill lägga till?</h4>
+    <form name="clear">
+        <div class="form-group">
+            <label>Armhävningar</label>
+            <small>Upp/Ner: 25 | Resettas dagligen</small>
+            <div class="btn-group special" role="group" aria-label="...">
+                <button type="button" class="btn btn-outline-success" [disabled]="pushupAdded" (click)="addPushups()">Lägg till</button>
+            </div>
+            <label>Plankan (30sek)</label>
+            <small>Upp/Ner: 1 | Resettas dagligen</small>
+            <div class="btn-group special" role="group" aria-label="...">
+                <button type="button" class="btn btn-outline-success" [disabled]="bridgeAdded" (click)="addBridge()">Lägg till</button>
+            </div>
+            <label>Ab-rolls</label>
+            <small>Upp/Ner: 10 | Resettas dagligen</small>
+            <div class="btn-group special" role="group" aria-label="...">
+                <button type="button" class="btn btn-outline-success"[disabled]="abRollsAdded" (click)="addAbRolls()">Lägg till</button>
+            </div>
+        </div>
+    </form>
+</div>
