@@ -13,8 +13,8 @@ export class TallyService {
   private showAll = false;
 
   init(): void {
-    const lsTallyCounters = <Array<Object>> this.localStorageService.getAll();
-    const tallyCounters = <Array<Tally>> this.convertLSToTallies(lsTallyCounters);
+    const lsTallyCounters = <Array<Object>>this.localStorageService.getAll();
+    const tallyCounters = <Array<Tally>>this.convertLSToTallies(lsTallyCounters);
 
     this.resetOldTallyCounter(tallyCounters);
   }
@@ -37,7 +37,7 @@ export class TallyService {
 
   addToHistory(tally: Tally): void {
     const tallyHistory: Array<History> = tally.getHistory();
-    if(tallyHistory.length < 1){
+    if (tallyHistory.length < 1) {
 
       const newHistoryEntry = new History({
         value: tally.getValue(),
@@ -45,18 +45,18 @@ export class TallyService {
       });
       tallyHistory.push(newHistoryEntry);
       tally.setHistory(tallyHistory);
-      this.localStorageService.update(this.convertToLsTally(tally));  
+      this.localStorageService.update(this.convertToLsTally(tally));
     }
-    else { 
-      tallyHistory.forEach( history => {
-        if(new Date(history.date).toDateString() !== tally.getLastTouched().toDateString()){
+    else {
+      tallyHistory.forEach(history => {
+        if (new Date(history.date).toDateString() !== tally.getLastTouched().toDateString()) {
           const newHistoryEntry = new History({
             value: tally.getValue(),
             date: tally.getLastTouched()
           });
           tallyHistory.push(newHistoryEntry);
           tally.setHistory(tallyHistory);
-          this.localStorageService.update(this.convertToLsTally(tally));        
+          this.localStorageService.update(this.convertToLsTally(tally));
         }
       });
     }
@@ -107,7 +107,7 @@ export class TallyService {
   }
 
   getEmptyTally() {
-    return new Tally ({
+    return new Tally({
       name: null,
       increseBy: null,
       decreseBy: null,
@@ -151,4 +151,22 @@ export class TallyService {
   getShowAll(): boolean {
     return this.showAll
   }
+
+
+  sortByLastTouched(tallies: Array<Tally>): Array<Tally> {
+
+    let sortedArray: Tally[] = tallies.sort((obj1, obj2) => {
+      if (obj1.lastTouched < obj2.lastTouched) {
+        return 1;
+      }
+
+      if (obj1.lastTouched > obj2.lastTouched) {
+        return -1;
+      }
+
+      return 0;
+    });
+    return sortedArray;
+  }
+
 }
