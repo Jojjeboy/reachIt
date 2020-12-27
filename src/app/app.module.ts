@@ -9,6 +9,7 @@ import { TallyComponent } from './tally/tally.component';
 import { FormsModule } from '@angular/forms';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { FormComponent } from './form/form.component';
+import { ClearCacheComponent } from './clear/clear-cache.component';
 
 
 const appRoutes: Routes = [
@@ -27,6 +28,11 @@ const appRoutes: Routes = [
       component: EditTallyComponent,
       data: { title: 'Edit Tally' }
     },
+    {
+      path: 'clear',
+      component: ClearCacheComponent,
+      data: { title: 'Clear Cache' }
+    },
     { path: '**', component: TalliesComponent }
   ];
 
@@ -37,6 +43,7 @@ const appRoutes: Routes = [
     TallyComponent,
     AddTallyComponent,
     EditTallyComponent,
+    ClearCacheComponent,
     TimeAgoPipe,
     FormComponent
   ],
