@@ -85,8 +85,6 @@ export class TallyService {
     }
   }
 
-  
-
   cleanHistory(tally: Tally): void {
     tally.setHistory([]);
     tally.touch();

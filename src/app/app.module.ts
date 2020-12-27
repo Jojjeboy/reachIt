@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ClearCacheComponent } from './clear/clear-cache.component';
+import { AddExampleComponent } from './add-example/add-example.component';
+import { FormComponent } from './form/form.component';
 import { AppComponent } from './app.component';
 import { TalliesComponent } from './tallies/tallies.component';
 import { AddTallyComponent } from './add-tally/add-tally.component';
 import { EditTallyComponent } from './edit-tally/edit-tally.component';
 import { TallyComponent } from './tally/tally.component';
-import { FormsModule } from '@angular/forms';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { FormComponent } from './form/form.component';
-import { ClearCacheComponent } from './clear/clear-cache.component';
-import { AddExampleComponent } from './add-example/add-example.component';
 
 
 const appRoutes: Routes = [
