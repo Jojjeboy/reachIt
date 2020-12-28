@@ -20,7 +20,8 @@
             <div class="collapse multi-collapse" id="multiCollapseExample-{{ tally.getUuid() }}">
                 <div class="card card-body">
                     <ul class="list-group list-group-flush">
-                        <li *ngFor="let history of tally.getHistory()">{{ history.value }} | {{ history.date | date : 'H:mm d MMM, y'}}</li>
+                        <li *ngFor="let history of tally.getHistory()">
+                            <span class="badge badge-primary">{{ history.value }} </span> - {{ history.date | date : 'd MMM H:mm'}}</li>
                     </ul>
                 </div>
             </div>
