@@ -15,12 +15,10 @@ export class TallyComponent implements OnInit {
   @Input() showAll: boolean;
 
   percentage = 0.00;
-  constructor() { }
 
   ngOnInit() {
     this.recalculatePercentage();
   }
-
 
   arrowUp() {
     this.tallyIncrese.emit(this.tally);
@@ -41,6 +39,4 @@ export class TallyComponent implements OnInit {
       }
     }
   }
-
-
 }

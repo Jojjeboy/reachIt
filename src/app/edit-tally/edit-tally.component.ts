@@ -40,6 +40,5 @@ export class EditTallyComponent implements OnInit {
 
     cleanHistory(tally: Tally): void {
       this.tallyService.cleanHistory(this.tally);
-      this.router.navigate(['/']);
     }
 }

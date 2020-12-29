@@ -8,7 +8,6 @@ export class History {
             this.setValue(obj.value);
     }
 
-
     public getValue(): number {
         return this.value;
     }

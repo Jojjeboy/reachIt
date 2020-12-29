@@ -1,0 +1,10 @@
+<div class="history-container">
+    <label *ngIf="showlabel">Historik</label>
+    <div class="card card-body">
+        <ul class="list-group list-group-flush" *ngIf="history.length">
+            <li *ngFor="let item of history">
+                <span class="badge badge-primary">{{ item.value }} </span> - {{ item.date | date : 'd MMM H:mm'}}
+            </li>
+        </ul>
+    </div>
+</div>

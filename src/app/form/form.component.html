@@ -2,47 +2,58 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="name">Namn</label>
-            <input [(ngModel)]="tally.name" type="text" maxlength="16" class="form-control" name="name" id="name" placeholder="Armhävningar" required />
+            <input [(ngModel)]="tally.name" type="text" maxlength="16" class="form-control" name="name" id="name"
+                placeholder="Armhävningar" required />
         </div>
     </div>
     <div class="form-row">
         <div class="col">
             <div class="form-group">
                 <label for="increseBy">Öka med</label>
-                <input type="text" [(ngModel)]="tally.increseBy" pattern="\d*" class="form-control" name="increseBy" id="increseBy" placeholder="25" required>
+                <input type="text" [(ngModel)]="tally.increseBy" pattern="\d*" class="form-control" name="increseBy"
+                    id="increseBy" placeholder="25" required>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
                 <label for="decreseBy">Minska med</label>
-                <input type="text" [(ngModel)]="tally.decreseBy" pattern="\d*" class="form-control" name="decreseBy" id="decreseBy" placeholder="25" required>
+                <input type="text" [(ngModel)]="tally.decreseBy" pattern="\d*" class="form-control" name="decreseBy"
+                    id="decreseBy" placeholder="25" required>
             </div>
         </div>
     </div>
     <div class="form-group">
         <label>Nollställ varje dag</label>
         <div class="btn-group special" role="group" aria-label="...">
-            <button type="button" (click)="toggleResetEveryday(true)" class="btn btn-outline-primary" [ngClass]="{'active':tally.resetEveryDay === true}">Ja</button>
-            <button type="button" (click)="toggleResetEveryday(false)" class="btn btn-outline-primary" [ngClass]="{'active':tally.resetEveryDay === false}">Nej</button>
+            <button type="button" (click)="toggleResetEveryday(true)" class="btn btn-outline-primary"
+                [ngClass]="{'active':tally.resetEveryDay === true}">Ja</button>
+            <button type="button" (click)="toggleResetEveryday(false)" class="btn btn-outline-primary" (click)="openModal()"
+                [ngClass]="{'active':tally.resetEveryDay === false}">Nej</button>
         </div>
     </div>
+    <app-tally-history *ngIf="tally.getHistory().length && isFormType('edit')" [history]="tally.getHistory()" [showlabel]="true"></app-tally-history>
     <div class="form-group">
         <label for="value">Värde</label>
-        <input type="text" min="0" class="form-control" pattern="\d*" [(ngModel)]="tally.value" id="value" name="value" placeholder="0" required>
+        <input type="text" min="0" class="form-control" pattern="\d*" [(ngModel)]="tally.value" id="value" name="value"
+            placeholder="0" required>
     </div>
     <div class="form-group">
         <label for="value">Topscore</label>
-        <input type="text" min="0" class="form-control" pattern="\d*" [(ngModel)]="tally.topScore" id="topScore" name="topScore" placeholder="0" required>
+        <input type="text" min="0" class="form-control" pattern="\d*" [(ngModel)]="tally.topScore" id="topScore"
+            name="topScore" placeholder="0" required>
     </div>
     <div class="form-group">
         <label for="goal">Mål</label>
-        <input type="text" min="1" class="form-control" pattern="\d*" [(ngModel)]="tally.goal" name="goal" id="goal" placeholder="100">
+        <input type="text" min="1" class="form-control" pattern="\d*" [(ngModel)]="tally.goal" name="goal" id="goal"
+            placeholder="100">
     </div>
     <div class="form-group">
         <label>Aktiv</label>
         <div class="btn-group special" role="group" aria-label="...">
-            <button type="button" (click)="toggleActive(true)" class="btn btn-outline-success" [ngClass]="{'active':tally.active === true}">Ja</button>
-            <button type="button" (click)="toggleActive(false)" class="btn btn-outline-danger" [ngClass]="{'active':tally.active === false}">Nej</button>
+            <button type="button" (click)="toggleActive(true)" class="btn btn-outline-success"
+                [ngClass]="{'active':tally.active === true}">Ja</button>
+            <button type="button" (click)="toggleActive(false)" class="btn btn-outline-danger"
+                [ngClass]="{'active':tally.active === false}">Nej</button>
         </div>
     </div>
     <!-- ADD Tally-->
@@ -54,7 +65,8 @@
         </div>
         <div class="col">
             <div class="form-group">
-                <button type="submit" class="btn btn-block btn-primary" [disabled]="!valid()" (click)="addTally(); tallyForm.reset()">Lägg till</button>
+                <button type="submit" class="btn btn-block btn-primary" [disabled]="!valid()"
+                    (click)="addTally(); tallyForm.reset()">Lägg till</button>
             </div>
         </div>
     </div>
@@ -63,21 +75,63 @@
     <div class="form-row" *ngIf="isFormType('edit')">
         <div class="col">
             <div class="form-group">
-                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-warning" (click)="confirmDeleteTally()">Radera</button>
-                <button type="submit" *ngIf="confirmed" class="btn btn-danger btn-block btn-block" (click)="deleteTally()">Radera</button>
+                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-warning"
+                    (click)="confirmDeleteTally()">Radera</button>
+                <button type="submit" *ngIf="confirmed" class="btn btn-danger btn-block btn-block"
+                    (click)="deleteTally()">Radera</button>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
-                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-outline-primary" [disabled]="!tallyHasHistory()" (click)="cleanHistory()">Töm historik</button>
+                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-outline-primary"
+                    [disabled]="!tallyHasHistory()" (click)="cleanHistory()">Töm historik</button>
 
             </div>
         </div>
         <div class="col">
             <div class="form-group">
-                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-primary" (click)="updateTally()" [disabled]="!valid()">Uppdatera</button>
+                <button type="submit" *ngIf="!confirmed" class="btn btn-block btn-primary" (click)="updateTally()"
+                    [disabled]="!valid()">Uppdatera</button>
                 <a routerLink="/" *ngIf="confirmed" class="btn btn-outline-warning btn-block block">Ångra</a>
             </div>
         </div>
     </div>
 </form>
+
+<!-- <div id="mdlSample" class="modal fade" role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">My Modal</h4>
+            </div>
+            <div class="modal-body">Text here!</div>
+            <div class="modal-footer">
+                <button type="button" id="btnOK" class="btn btn-success" (click)="btnOKClick()"><i
+                        class="fa fa-check fa-fw"></i> Ok</button>
+                <button type="button" id="btnClose" class="btn btn-danger" (click)="openModal(false)"><i
+                        class="fa fa-times fa-fw"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="mdlSample modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Radera historik</h5>
+          <button type="button" class="close" (click)="discard()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Är du säker på att du vill radera historiken för {{ tally.getName() }}?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" (click)="discard()">Ångra</button>
+          <button type="button" class="btn btn-danger" (click)="eraseHistory()">Radera</button>
+        </div>
+      </div>
+    </div>
+  </div>

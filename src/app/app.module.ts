@@ -11,6 +11,7 @@ import { AddTallyComponent } from './add-tally/add-tally.component';
 import { EditTallyComponent } from './edit-tally/edit-tally.component';
 import { TallyComponent } from './tally/tally.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { TallyHistoryComponent } from './tally-history/tally-history.component';
 
 const appRoutes: Routes = [
   {
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     ClearCacheComponent,
     TimeAgoPipe,
     FormComponent,
-    AddExampleComponent
+    AddExampleComponent,
+    TallyHistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -33,3 +33,12 @@ label {
     background-color: #ff0099;
     border-color: #ff0099;
 }
+
+.mdlSample{
+    margin-top: 100px;
+    transition: transform .3s ease-out;
+    transform: translate(0,-50px);
+}
+.mdlSample .modal-header{
+    border-top: 22px solid #dee2e6;
+}
