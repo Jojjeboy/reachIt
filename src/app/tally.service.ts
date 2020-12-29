@@ -17,6 +17,7 @@ export class TallyService {
     const tallyCounters = <Array<Tally>>this.convertLSToTallies(lsTallyCounters);
 
     this.resetOldTallyCounter(tallyCounters);
+    this.removeDuplicatesInHistory(tallyCounters);
   }
 
 
@@ -150,6 +151,20 @@ export class TallyService {
 
   getShowAll(): boolean {
     return this.showAll
+  }
+
+  removeDuplicatesInHistory(allTallys: Array<Tally>) {
+    allTallys.forEach(tally => {
+      let arr = tally.getHistory();
+      arr = arr.filter((history, index, self) =>
+        index === self.findIndex((t) => (
+          t.date === history.date && t.value === history.value
+        ))
+        );
+        tally.setHistory(arr);
+        console.log(tally);
+        this.update(tally);
+    });
   }
 
 
