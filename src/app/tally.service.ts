@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Tally } from './Tally';
 import { History } from './History';
 import { LocalStorageService } from './local-storage.service';
+import { VERSION } from '../environments/version';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class TallyService {
     const tallyCounters = <Array<Tally>>this.convertLSToTallies(lsTallyCounters);
 
     this.resetOldTallyCounter(tallyCounters);
+    this.updateAppVersion();
     //this.removeDuplicatesInHistory(tallyCounters);
   }
 
@@ -170,9 +172,9 @@ export class TallyService {
         index === self.findIndex((t) => (
           t.date === history.date && t.value === history.value
         ))
-        );
-        tally.setHistory(arr);
-        this.update(tally);
+      );
+      tally.setHistory(arr);
+      this.update(tally);
     });
   }
 
@@ -191,6 +193,28 @@ export class TallyService {
       return 0;
     });
     return sortedArray;
+  }
+
+  private updateAppVersion(): void {
+    let config = this.localStorageService.getConfig();
+    let foundVersion = false;
+    if (!config.appVersion) {
+      config["appVersion"] = [];
+    }
+    config.appVersion.forEach(versions => {
+      if (VERSION.hash == versions.hash) {
+        foundVersion = true;
+      }
+    });
+    if (!foundVersion) {
+      config.appVersion.push({
+        date: new Date(),
+        hash: VERSION.hash,
+      });
+      this.localStorageService.saveConfig(config);
+    }
+
+
   }
 
 }

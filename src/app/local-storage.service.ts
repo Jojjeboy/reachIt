@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { VERSION } from '../environments/version';
 
 @Injectable({
   providedIn: 'root'
@@ -122,7 +123,18 @@ export class LocalStorageService {
   }
 
   public emptyItemsInKey(): void {
-    localStorage.setItem(this.key, JSON.stringify({ config: {showAll: false}, data: [] }));
+    localStorage.setItem(this.key, JSON.stringify(
+      { config: {
+        showAll: false, 
+        appVersion: [
+          { 
+            date: new Date(),
+            hash: VERSION.hash
+          }
+        ]
+        }, data: [] }
+      
+      ));
   }
 
   public clear(): any {
@@ -137,6 +149,11 @@ export class LocalStorageService {
     return lSData['config'];
   }
 
+  public saveConfig(config: Object): void {
+    const lSData: Object = JSON.parse(localStorage.getItem(this.key));
+    localStorage.setItem(this.key, JSON.stringify({ config: config, data: lSData['data'] }));
+  }
+
   public uppdatePropertyOnAll(propertyName: string, newValue: any): void {
     const lsData: Array<any> = this.getAll();
     let touched = false;
@@ -149,10 +166,5 @@ export class LocalStorageService {
     if (touched) {
       this.writeLS(lsData);
     }
-  }
-
-  public saveConfig(config: Object): void {
-    const lSData: Object = JSON.parse(localStorage.getItem(this.key));
-    localStorage.setItem(this.key, JSON.stringify({ config: config, data: lSData['data'] }));
   }
 }

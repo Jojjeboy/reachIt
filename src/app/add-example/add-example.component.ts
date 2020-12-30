@@ -26,7 +26,6 @@ export class AddExampleComponent {
 
 
     localStorageService.init(this.appTitle);
-    tallyService.init();
     this.setStatus();
 
     

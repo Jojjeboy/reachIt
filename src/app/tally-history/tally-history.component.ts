@@ -24,9 +24,7 @@ export class TallyHistoryComponent {
   mdlSampleIsOpen : boolean = false;
   
   constructor(
-    private tallyService: TallyService) {
-    tallyService.init();
-  }
+    private tallyService: TallyService) {}
 
 
   getPercentage(goal: number, value: number): number {
