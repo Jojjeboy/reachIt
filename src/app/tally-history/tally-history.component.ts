@@ -1,6 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Tally } from '../Tally';
 import { TallyService } from '../tally.service';
+import { LOCALE_ID, Inject } from "@angular/core";
+import { formatDate } from "@angular/common";
+import { of } from "rxjs";
+
+
+
 
 @Component({
   selector: 'app-tally-history',
@@ -16,8 +22,9 @@ export class TallyHistoryComponent {
 
   protected percentage: number;
   mdlSampleIsOpen : boolean = false;
-
-  constructor(private tallyService: TallyService) {
+  
+  constructor(
+    private tallyService: TallyService) {
     tallyService.init();
   }
 

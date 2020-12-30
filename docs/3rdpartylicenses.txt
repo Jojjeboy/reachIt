@@ -23,21 +23,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-@angular/common
-MIT
-
-@angular/core
-MIT
-
-@angular/forms
-MIT
-
-@angular/platform-browser
-MIT
-
-@angular/router
-MIT
-
 bootstrap
 MIT
 The MIT License (MIT)
@@ -64,6 +49,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+font-awesome
+(OFL-1.1 AND MIT)
+
+undefined
+
+@angular/common
+MIT
+
+@angular/core
+MIT
+
+@angular/forms
+MIT
+
+@angular/platform-browser
+MIT
+
+@angular/router
+MIT
+
 core-js
 MIT
 Copyright (c) 2014-2020 Denis Pushkarev
@@ -86,9 +91,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-
-font-awesome
-(OFL-1.1 AND MIT)
 
 regenerator-runtime
 MIT

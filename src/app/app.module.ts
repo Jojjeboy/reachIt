@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ClearCacheComponent } from './clear/clear-cache.component';
@@ -12,6 +12,9 @@ import { EditTallyComponent } from './edit-tally/edit-tally.component';
 import { TallyComponent } from './tally/tally.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { TallyHistoryComponent } from './tally-history/tally-history.component';
+import { registerLocaleData } from "@angular/common";
+import localeSv from "@angular/common/locales/sv";
+
 
 const appRoutes: Routes = [
   {
@@ -62,7 +65,10 @@ const appRoutes: Routes = [
     ),
     FormsModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: "sv-SE" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+registerLocaleData(localeSv, "sv");

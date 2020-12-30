@@ -1,6 +1,9 @@
     .history-container {
         margin-bottom: 10px;
     }
+    .card.card-body{
+        padding: 10px;
+    }
     
     .widget-content {
         padding: 1rem;
@@ -63,6 +66,10 @@
         margin-bottom: 20px;
     }
     
+    ul li.list-group-item {
+        padding: 20px 10px;
+    }
+
     ul li.goal-reached .circle {
         border: 1px solid #3ac47d;
     }
