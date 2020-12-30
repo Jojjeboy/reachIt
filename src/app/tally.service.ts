@@ -101,8 +101,7 @@ export class TallyService {
 
   cleanHistory(tally: Tally): void {
     tally.setHistory([]);
-    tally.touch();
-    this.localStorageService.update(this.convertToLsTally(tally));
+    this.update(tally);
   }
 
   convertLSToTallies(tallyCounters: Array<object>): Array<Tally> {

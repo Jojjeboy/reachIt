@@ -59,6 +59,10 @@
         border: 1px solid #dc3545;
     }
     
+    ul {
+        margin-bottom: 20px;
+    }
+    
     ul li.goal-reached .circle {
         border: 1px solid #3ac47d;
     }
@@ -66,5 +70,3 @@
     .progress {
         height: 0.3rem;
     }
-    
-    ul li.goal-reached .progress {}

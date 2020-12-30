@@ -36,4 +36,8 @@ export class TallyComponent implements OnInit {
   recalculatePercentage() {
     this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
   }
+
+  cleanHistory(tally: Tally): void {
+    this.tallyService.cleanHistory(this.tally);
+  }
 }

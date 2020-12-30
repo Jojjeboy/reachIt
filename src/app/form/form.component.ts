@@ -16,10 +16,9 @@ export class FormComponent {
   @Output() tallyAdd = new EventEmitter<Tally>();
   @Output() tallyUpdate = new EventEmitter<Tally>();
   @Output() tallyDelete = new EventEmitter<Tally>();
-  @Output() tallyCleanHistory = new EventEmitter<Tally>();
+  
 
   private confirmed = false;
-  mdlSampleIsOpen : boolean = false;
 
   addTally() {
     this.tallyAdd.emit(this.tally);
@@ -51,26 +50,6 @@ export class FormComponent {
 
   tallyHasHistory() {
     return this.tally.getHistory().length > 0;
-  }
-
-  cleanHistory() {
-    this.tallyCleanHistory.emit(this.tally);
-  }
-
-  openModal() {
-    if(this.tally.getHistory().length > 0){
-      this.mdlSampleIsOpen = true;
-    }
-  }
-
-  discard() {
-    this.mdlSampleIsOpen = false;
-    this.tally.setResetEveryday(true);
-  }
-
-  eraseHistory() {
-    this.cleanHistory();
-    this.mdlSampleIsOpen = false;
   }
 
   valid() : boolean{

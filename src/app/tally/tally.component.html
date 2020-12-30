@@ -16,8 +16,8 @@
     </div>
     <div class="row">
         <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample-{{ tally.getUuid() }}">
-                <app-tally-history [tally]="tally" [showlabel]="false"></app-tally-history>
+            <div class="collapse multi-collapse" id="multiCollapseExample-{{ tally.getUuid() }}" *ngIf="tally.getHistory().length">
+                <app-tally-history [tally]="tally" [showlabel]="false" (tallyCleanHistory)="cleanHistory(tally)"></app-tally-history>
             </div>
         </div>
     </div>
