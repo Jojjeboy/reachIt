@@ -1,5 +1,4 @@
-<div class="container tally-item list-group-item list-group-item-action flex-column align-items-start"
-    [ngClass]="{'inactive' : !tally.getActive()}" *ngIf="showAll || (!showAll && tally.getActive())">
+<div class="container tally-item list-group-item list-group-item-action flex-column align-items-start" [ngClass]="{'inactive' : !tally.getActive()}" *ngIf="showAll || (!showAll && tally.getActive())">
     <div class="row">
         <div class="col-sm">
             <div class="d-flex w-100 justify-content-between">
@@ -18,7 +17,7 @@
     <div class="row">
         <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample-{{ tally.getUuid() }}">
-                <app-tally-history [history]="tally.getHistory()" [resetEveryday]="tally.getResetEveryday()" [showlabel]="false"></app-tally-history>
+                <app-tally-history [tally]="tally" [history]="tally.getHistory()" [resetEveryday]="tally.getResetEveryday()" [showlabel]="false"></app-tally-history>
             </div>
         </div>
     </div>
@@ -36,9 +35,7 @@
     <div class="row">
         <div class="col">
             <div *ngIf="tally.goal" class="progress">
-                <div class="progress-bar" [style.width]="percentage + '%'"
-                    [class.done]="tally.getValue() == tally.getGoal()" [class.over]="tally.getValue() > tally.getGoal()"
-                    [ngClass]="{'progress-bar-striped progress-bar-animated' : tally.getValue() < tally.getGoal()}"
+                <div class="progress-bar" [style.width]="percentage + '%'" [class.done]="tally.getValue() == tally.getGoal()" [class.over]="tally.getValue() > tally.getGoal()" [ngClass]="{'progress-bar-striped progress-bar-animated' : tally.getValue() < tally.getGoal()}"
                     role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>

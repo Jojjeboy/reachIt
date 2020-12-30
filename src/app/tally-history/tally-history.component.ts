@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { History } from '../History';
+import { Tally } from '../Tally';
 
 @Component({
   selector: 'app-tally-history',
@@ -11,5 +12,9 @@ export class TallyHistoryComponent {
   @Input() resetEveryday: Boolean;
   @Input() history: Array<History>;
   @Input() showlabel: Boolean = false;
+  @Input() tally: Tally;
+
+
+  
 
 }

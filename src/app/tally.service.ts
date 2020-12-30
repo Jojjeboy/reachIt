@@ -150,7 +150,7 @@ export class TallyService {
   }
 
   getShowAll(): boolean {
-    return this.showAll
+    return this.showAll;
   }
 
   removeDuplicatesInHistory(allTallys: Array<Tally>) {
