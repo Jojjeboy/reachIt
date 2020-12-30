@@ -213,8 +213,6 @@ export class TallyService {
       });
       this.localStorageService.saveConfig(config);
     }
-
-
   }
 
 }
