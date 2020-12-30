@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tally } from '../Tally';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { TallyService } from '../tally.service';
 
 @Component({
   selector: 'app-tally',
@@ -15,6 +16,8 @@ export class TallyComponent implements OnInit {
   @Input() showAll: boolean;
 
   percentage = 0.00;
+
+  constructor(private tallyService: TallyService) {}
 
   ngOnInit() {
     this.recalculatePercentage();
@@ -31,12 +34,6 @@ export class TallyComponent implements OnInit {
   }
 
   recalculatePercentage() {
-    if (this.tally.getGoal() !== null && this.tally.getValue() !== null) {
-      this.percentage = (this.tally.getValue() / this.tally.getGoal() * 100);
-      this.percentage = parseInt(this.percentage.toString(), 10);
-      if (isNaN(this.percentage)) {
-        this.percentage = 0;
-      }
-    }
+    this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
   }
 }

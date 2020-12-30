@@ -2,10 +2,6 @@
         margin-bottom: 10px;
     }
     
-    ul li {
-        list-style: none;
-    }
-    
     .widget-content {
         padding: 1rem;
         flex-direction: row;
@@ -60,5 +56,15 @@
         margin: 0 auto 10px;
         line-height: 76px;
         color: #a5a5a5;
-        border: 1px solid #e0e0e0;
+        border: 1px solid #dc3545;
     }
+    
+    ul li.goal-reached .circle {
+        border: 1px solid #3ac47d;
+    }
+    
+    .progress {
+        height: 0.3rem;
+    }
+    
+    ul li.goal-reached .progress {}

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { History } from '../History';
 import { Tally } from '../Tally';
+import { TallyService } from '../tally.service';
 
 @Component({
   selector: 'app-tally-history',
@@ -9,12 +9,18 @@ import { Tally } from '../Tally';
 })
 export class TallyHistoryComponent {
   
-  @Input() resetEveryday: Boolean;
-  @Input() history: Array<History>;
   @Input() showlabel: Boolean = false;
   @Input() tally: Tally;
 
+  protected percentage: number;
 
-  
+  constructor(private tallyService: TallyService) {
+    tallyService.init();
+  }
+
+
+  getPercentage(goal: number, value: number): number {
+    return this.tallyService.recalculatePercentage(goal, value);
+  }
 
 }

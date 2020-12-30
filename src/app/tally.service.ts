@@ -11,15 +11,28 @@ export class TallyService {
   constructor(private localStorageService: LocalStorageService) { }
 
   private showAll = false;
+  percentage = 0.00;
 
   init(): void {
     const lsTallyCounters = <Array<Object>>this.localStorageService.getAll();
     const tallyCounters = <Array<Tally>>this.convertLSToTallies(lsTallyCounters);
 
     this.resetOldTallyCounter(tallyCounters);
-    this.removeDuplicatesInHistory(tallyCounters);
+    //this.removeDuplicatesInHistory(tallyCounters);
   }
 
+
+  recalculatePercentage(goal: number, value: number): number {
+    let percentage = 0.00;
+    if (goal !== null && value !== null) {
+      percentage = (value / goal * 100);
+      percentage = parseInt(percentage.toString(), 10);
+      if (isNaN(this.percentage)) {
+        percentage = 0;
+      }
+    }
+    return percentage;
+  }
 
   resetOldTallyCounter(tallyCounters: Array<Tally>): void {
     for (const tallyCounter of tallyCounters) {
@@ -145,8 +158,6 @@ export class TallyService {
     this.showAll = !this.showAll;
     config.showAll = this.showAll;
     this.localStorageService.saveConfig(config);
-    console.log('this.showAll: ');
-    console.log(this.showAll);
   }
 
   getShowAll(): boolean {
@@ -162,7 +173,6 @@ export class TallyService {
         ))
         );
         tally.setHistory(arr);
-        console.log(tally);
         this.update(tally);
     });
   }

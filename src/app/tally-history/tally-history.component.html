@@ -1,8 +1,8 @@
 <div class="history-container">
     <label *ngIf="showlabel">Historik</label>
     <div class="card card-body">
-        <ul class="list-group list-group-flush" *ngIf="history.length">
-            <li *ngFor="let item of history" class="list-group-item">
+        <ul class="list-group list-group-flush" *ngIf="tally.getHistory().length">
+            <li *ngFor="let item of tally.getHistory()" class="list-group-item" [class.goal-reached]="item.value >= tally.getGoal()">
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left mr-3">
@@ -14,13 +14,17 @@
                         </div>
                         <div class="widget-content-right">
                             <div class="font-size-xlg text-muted">
-                                <span>{{ item.value }}</span>
+                                <span>{{ item.value }} / {{ tally.getGoal() }}</span>
                                 <small class="pl-2" [class.text-success]="item.value >= tally.getGoal()" [class.text-danger]="item.value < tally.getGoal()">
                                     <i class="fa" [class.fa-angle-up]="item.value >= tally.getGoal()"></i>
                                     <i class="fa" [class.fa-angle-down]="item.value < tally.getGoal()"></i>
                                 </small>
                             </div>
                         </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" [attr.aria-valuenow]="getPercentage(tally.getGoal(), item.value)" [style.width]="getPercentage(tally.getGoal(), item.value) + '%'" [class.done]="tally.getValue() == tally.getGoal()" [class.over]="tally.getValue() > tally.getGoal()"
+                            [ngClass]="{'bg-danger' : item.value < tally.getGoal()}" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </li>
