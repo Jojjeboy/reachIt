@@ -41,4 +41,4 @@ https://github.com/Jojjeboy/reachIt
 
  ## Added publish script
 run 
-`sh publish.sh commitmessage"`
+`sh publish.sh Add a descriptive commit message here`

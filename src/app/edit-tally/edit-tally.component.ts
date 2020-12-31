@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TallyService } from '../tally.service';
 import { Tally } from '../Tally';
-import { UUIDService } from '../uuid.service';
 import { LocalStorageService } from '../local-storage.service'
 
 @Component({
@@ -14,7 +13,6 @@ export class EditTallyComponent implements OnInit {
 
   constructor(
     private tallyService: TallyService,
-    private uuidService: UUIDService,
     private localStorageService: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute) {

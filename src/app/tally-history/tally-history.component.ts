@@ -1,12 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Tally } from '../Tally';
 import { TallyService } from '../tally.service';
-import { LOCALE_ID, Inject } from "@angular/core";
-import { formatDate } from "@angular/common";
-import { of } from "rxjs";
-
-
-
 
 @Component({
   selector: 'app-tally-history',
@@ -14,17 +8,16 @@ import { of } from "rxjs";
   styleUrls: ['./tally-history.component.css']
 })
 export class TallyHistoryComponent {
-  
+
   @Input() showlabel: Boolean = false;
   @Input() tally: Tally;
 
   @Output() tallyCleanHistory = new EventEmitter<Tally>();
 
   protected percentage: number;
-  mdlSampleIsOpen : boolean = false;
-  
-  constructor(
-    private tallyService: TallyService) {}
+  mdlSampleIsOpen: boolean = false;
+
+  constructor(private tallyService: TallyService) { }
 
 
   getPercentage(goal: number, value: number): number {
@@ -33,10 +26,11 @@ export class TallyHistoryComponent {
 
   cleanHistory() {
     this.tallyCleanHistory.emit(this.tally);
+    this.mdlSampleIsOpen = false;
   }
 
   openModal() {
-    if(this.tally.getHistory().length > 0){
+    if (this.tally.getHistory().length > 0) {
       this.mdlSampleIsOpen = true;
     }
   }
@@ -45,10 +39,4 @@ export class TallyHistoryComponent {
     this.mdlSampleIsOpen = false;
     this.tally.setResetEveryday(true);
   }
-
-  eraseHistory() {
-    this.cleanHistory();
-    this.mdlSampleIsOpen = false;
-  }
-
 }

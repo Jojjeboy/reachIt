@@ -16,6 +16,7 @@ export class FormComponent {
   @Output() tallyAdd = new EventEmitter<Tally>();
   @Output() tallyUpdate = new EventEmitter<Tally>();
   @Output() tallyDelete = new EventEmitter<Tally>();
+  @Output() tallyCleanHistory = new EventEmitter<Tally>();
   
 
   private confirmed = false;
@@ -50,6 +51,10 @@ export class FormComponent {
 
   tallyHasHistory() {
     return this.tally.getHistory().length > 0;
+  }
+
+  cleanHistory() {
+    this.tallyCleanHistory.emit(this.tally);
   }
 
   valid() : boolean{
