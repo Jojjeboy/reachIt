@@ -3,10 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "postinstall": "node git-version.js",
     "start": "ng serve",
     "build": "ng build",
-    "prebuild": "node git-version.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -21,7 +19,6 @@
     "@angular/platform-browser": "^8.2.12",
     "@angular/platform-browser-dynamic": "^8.2.12",
     "@angular/router": "^8.2.12",
-    "@w11k/git-info": "^1.0.1",
     "bootstrap": "^4.3.1",
     "core-js": "^2.6.10",
     "font-awesome": "^4.7.0",
@@ -40,8 +37,6 @@
     "@types/jasminewd2": "^2.0.8",
     "@types/node": "^10.14.22",
     "codelyzer": "^5.2.0",
-    "fs-extra": "6.0.1",
-    "git-describe": "4.0.4",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^3.1.4",

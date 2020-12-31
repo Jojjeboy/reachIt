@@ -36,3 +36,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Visit page
 https://github.com/Jojjeboy/reachIt
+
+ ng build --prod --output-path docs --base-href "https://jojjeboy.github.io/reachIt/" && git add . && git commit -m"Test" && npm run postinstall && git add . && git commit -m"Postinstall autocommit message" && git push
+
+ ## Added publish script
+run 
+`sh publish.sh commitmessage"`
