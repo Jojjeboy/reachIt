@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { ClearCacheComponent } from './clear/clear-cache.component';
 import { AddExampleComponent } from './add-example/add-example.component';
 import { TalliesComponent } from './tallies/tallies.component';
@@ -13,6 +13,8 @@ import { TallyComponent } from './tally/tally.component';
 import { FormComponent } from './form/form.component';
 import { TallyHistoryComponent } from './tally-history/tally-history.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { TodoComponent } from './todo/todo.component';
+
 
 
 const appRoutes: Routes = [
@@ -41,6 +43,11 @@ const appRoutes: Routes = [
         component: AddExampleComponent,
         data: { title: 'Add example' }
       },
+      {
+        path: 'todo',
+        component: TodoComponent,
+        data: { title: 'Todo' }
+      },
       { path: '**', component: TalliesComponent }
     ];
 
@@ -48,13 +55,13 @@ const appRoutes: Routes = [
     @NgModule({
         imports: [
             BrowserModule,
+            CommonModule,
             RouterModule.forRoot(
                 appRoutes, {
                     enableTracing: false
                 }
             ),
-            FormsModule,
-            CommonModule
+            FormsModule
         ],
         exports: [RouterModule],
         declarations: [
@@ -66,7 +73,8 @@ const appRoutes: Routes = [
             TallyComponent,
             FormComponent,
             TallyHistoryComponent,
-            TimeAgoPipe
+            TimeAgoPipe,
+            TodoComponent
         ]
 
     })

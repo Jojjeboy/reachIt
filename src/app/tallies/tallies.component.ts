@@ -12,7 +12,6 @@ import { UUIDService } from '../uuid.service';
 })
 export class TalliesComponent {
 
-  appTitle = 'reachIt';
   tallies = Array<Tally>();
   public showAll: boolean;
 
@@ -21,7 +20,6 @@ export class TalliesComponent {
     private uuidService: UUIDService,
     private tallyService: TallyService) {
 
-    localStorageService.init(this.appTitle);
     tallyService.init();
 
     this.tallies = tallyService.convertLSToTallies(localStorageService.getAll());

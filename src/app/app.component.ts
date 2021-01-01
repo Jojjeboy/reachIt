@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { VERSION } from '../environments/version';
+import { LocalStorageService } from './local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,10 @@ import { VERSION } from '../environments/version';
 })
 export class AppComponent {
   public hash = VERSION.hash;
+  appTitle = 'reachIt';
+
+  constructor(private localStorageService: LocalStorageService) {
+    this.localStorageService.init(this.appTitle);
+  }
+
 }

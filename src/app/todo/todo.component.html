@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col">
+
+        <h4 class="text-center">Att göra</h4>
+
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action" *ngFor="let todo of todos">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ todo.title }}</h5>
+                    <small>{{ todo.updated  | timeAgo }}</small>
+                </div>
+                <p class="mb-1">{{ todo.description }}</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+<form name="todo" #todoForm="ngForm">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="title">Title</label>
+            <input [(ngModel)]="todo.title" type="text" maxlength="16" class="form-control" name="todo.title" id="title"
+                placeholder="Titel" required />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="description">Beskriving</label>
+            <textarea class="form-control" placeholder="Beskrivning" required [(ngModel)]="todo.description"
+                id="description" name="todo.description" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Prio</label>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-success" (click)="todo.prio = 3" [class.focus.active]="todo.prio == 3" [class.disabled]="todo.prio != 3">
+                  <input type="radio" name="options" value="3" id="option1" autocomplete="off"> Normal
+                </label>
+                <label class="btn btn-warning" (click)="todo.prio = 2" [class.focus.active]="todo.prio == 2" [class.disabled]="todo.prio != 2">
+                  <input type="radio" name="options" value="2" id="option2" autocomplete="off"> Medium
+                </label>
+                <label class="btn btn-danger" (click)="todo.prio = 1" [class.focus.active]="todo.prio == 1" [class.disabled]="todo.prio != 1">
+                  <input type="radio" name="options" value="1" id="option3" autocomplete="off"> Hög
+                </label>
+              </div>              
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <button type="submit" [disabled]="!valid()" class="btn btn-block btn-success" (click)="addTodo()">Lägg
+                till</button>
+        </div>
+    </div>
+</form>
+
+<br /><p>&nbsp;</p>
+<pre>{{ todo | json }}</pre>

@@ -17,14 +17,13 @@ export class AddTallyComponent {
     private uuidService: UUIDService,
     private localStorageService: LocalStorageService,
     private router: Router) {
-      localStorageService.init('reachIt');
+      //localStorageService.init('reachIt');
       this.tally = this.tallyService.getEmptyTally();
       this.tally.setUuid(uuidService.UUID());
     }
 
   addTally() {
     this.tallyService.touch(this.tally);
-    console.log(new Date());
     this.tallyService.save(this.tally);
     this.router.navigate(['/']);
   }
