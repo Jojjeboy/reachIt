@@ -4,13 +4,13 @@
         <h4 class="text-center">Att göra</h4>
 
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" *ngFor="let todo of todos">
+            <div class="todo" (click)="editTodo(todo)" class="list-group-item list-group-item-action" *ngFor="let todo of todos">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ todo.title }}</h5>
-                    <small>{{ todo.updated  | timeAgo }}</small>
+                    <small>{{ todo.updated  | timeAgo }}<br /><span class="badge pull-right" [class.badge-success]="todo.prio == 3" [class.badge-warning]="todo.prio == 2" [class.badge-danger]="todo.prio == 1">Prio: {{ todo.prio }}</span></small>
                 </div>
                 <p class="mb-1">{{ todo.description }}</p>
-            </a>
+            </div>
         </div>
     </div>
 </div>
@@ -50,8 +50,8 @@
     </div>
     <div class="form-row">
         <div class="form-group col">
-            <button type="submit" [disabled]="!valid()" class="btn btn-block btn-success" (click)="addTodo()">Lägg
-                till</button>
+            <button type="submit" [disabled]="!valid()" class="btn btn-block btn-success" *ngIf="!editMode" (click)="addTodo()">Lägg till</button>
+            <button type="submit" [disabled]="!valid()" class="btn btn-block btn-success" *ngIf="editMode" (click)="updateTodo()">Uppdatera</button>
         </div>
     </div>
 </form>

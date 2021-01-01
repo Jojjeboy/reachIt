@@ -12,6 +12,7 @@ export class TodoComponent implements OnInit {
 
   todo: Todo;
   todos: Array<Todo>;
+  editMode: boolean = false;
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
@@ -22,8 +23,23 @@ export class TodoComponent implements OnInit {
   
   addTodo() {
     this.todoService.addTodo(this.todo);
+    this.refreshUi();
+  }
+  
+  editTodo(todo: Todo) {
+    this.todo = todo;
+    this.editMode = true;
+  }
+  
+  updateTodo(): void{
+    this.todoService.updateTodo(this.todo);
+    this.refreshUi();
+  }
+
+  refreshUi(): void{
     this.todo = this.todoService.getEmptyTodo();
     this.todos = this.todoService.getTodos();
+    this.editMode = false;
   }
 
   valid(): boolean{

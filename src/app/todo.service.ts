@@ -31,8 +31,23 @@ export class TodoService {
 
   }
   
-  updateTodo(todo: Todo): void {
+  updateTodo(updatedTodo: Todo): void {
+    let todos: Array<Todo> = this.getTodos();
+    todos.forEach(todo => {
+      if(updatedTodo.getUuid() === todo.getUuid()){
+        todo.setTitle(updatedTodo.getTitle());
+        todo.setDescription(updatedTodo.getDescription());
+        todo.setPrio(updatedTodo.getPrio());
+      }
+    });
+    let lsArr = Array<Object>(); 
+    todos.forEach(todo => {
+      const obj = this.convertToLsObject(todo);
+      lsArr.push(obj);
+    });
 
+    this.config.todo = lsArr;
+    this.localStorageService.saveConfig(this.config);
   }
   
   removeTodo(todo: Todo): void {
@@ -53,8 +68,7 @@ export class TodoService {
     if(!this.config.todo) {
       this.config["todo"] = [];
     }
-    return this.convertLSToTodos(this.config.todo);
-    
+    return this.convertLSToTodos(this.config.todo); 
   }
 
   convertLSToTodos(localStorageTodos: Array<any>): Array<Todo>{
@@ -67,9 +81,15 @@ export class TodoService {
     return todos;
   }
 
-  convertToLsObject(object: Object): Object {
-    const po = Object.assign({}, object);
-    return po;
+  convertToLsObject(todo: Todo): Object {
+    //let lsObjects: Array<Object>;
+    //objects.forEach(obj => {
+      const po = Object.assign({}, todo);
+      return po;
+      //lsObjects.push(po);
+    //});
+
+    //return lsObjects;
   }
 
 }
