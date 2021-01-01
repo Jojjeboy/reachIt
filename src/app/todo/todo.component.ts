@@ -16,8 +16,7 @@ export class TodoComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    this.todo = this.todoService.getEmptyTodo();
-    this.todos = this.todoService.getTodos();
+    this.refreshUi();
   }
   
   
@@ -43,7 +42,10 @@ export class TodoComponent implements OnInit {
 
   refreshUi(): void{
     this.todo = this.todoService.getEmptyTodo();
-    this.todos = this.todoService.getTodos();
+    this.todos = this.todoService.getTodos().sort(function(a, b) { 
+      return a.prio - b.prio;
+    });
+
     this.editMode = false;
   }
 

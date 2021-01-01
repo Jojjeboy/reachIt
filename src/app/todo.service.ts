@@ -89,14 +89,8 @@ export class TodoService {
   }
 
   convertToLsObject(todo: Todo): Object {
-    //let lsObjects: Array<Object>;
-    //objects.forEach(obj => {
       const po = Object.assign({}, todo);
       return po;
-      //lsObjects.push(po);
-    //});
-
-    //return lsObjects;
   }
 
 }
