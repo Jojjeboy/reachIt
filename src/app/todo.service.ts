@@ -50,8 +50,15 @@ export class TodoService {
     this.localStorageService.saveConfig(this.config);
   }
   
-  removeTodo(todo: Todo): void {
-
+  removeTodo(uuid: String): void {
+    let lsTodo: Array<Object> = [];
+    this.config.todo.forEach(todo => {
+      if(todo.uuid != uuid){
+        lsTodo.push(todo);
+      } 
+    });
+    this.config.todo = lsTodo;
+    this.localStorageService.saveConfig(this.config);
   }
 
   getEmptyTodo() {

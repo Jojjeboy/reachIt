@@ -36,6 +36,11 @@ export class TodoComponent implements OnInit {
     this.refreshUi();
   }
 
+  removeTodo(): void{
+    this.todoService.removeTodo(this.todo.getUuid());
+    this.refreshUi();
+  }
+
   refreshUi(): void{
     this.todo = this.todoService.getEmptyTodo();
     this.todos = this.todoService.getTodos();

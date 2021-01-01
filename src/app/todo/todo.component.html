@@ -49,9 +49,10 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col">
+        <div class="form-group col btn-group">
             <button type="submit" [disabled]="!valid()" class="btn btn-block btn-success" *ngIf="!editMode" (click)="addTodo()">Lägg till</button>
-            <button type="submit" [disabled]="!valid()" class="btn btn-block btn-success" *ngIf="editMode" (click)="updateTodo()">Uppdatera</button>
+            <button type="submit" class="btn btn-danger" *ngIf="editMode" (click)="removeTodo()">Ta bort</button>
+            <button type="submit" [disabled]="!valid()" class="btn btn-success" *ngIf="editMode" (click)="updateTodo()">Uppdatera</button>
         </div>
     </div>
 </form>

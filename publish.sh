@@ -47,6 +47,3 @@ else
     echo "Inga förändringar upptäcktes.\n*** Script stoppat ***"
     exit 0;
 fi
-
-
-echo "hello world 2";
