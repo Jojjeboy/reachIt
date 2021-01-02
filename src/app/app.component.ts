@@ -9,10 +9,12 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class AppComponent {
   public hash = VERSION.hash;
+  public date = VERSION.date;
   appTitle = 'reachIt';
+  
 
   constructor(private localStorageService: LocalStorageService) {
     this.localStorageService.init(this.appTitle);
+    //console.log(VERSION);
   }
-
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../todo';
 import { TodoService } from '../todo.service';
-import { UUIDService } from '../uuid.service';
 
 @Component({
   selector: 'app-todo',

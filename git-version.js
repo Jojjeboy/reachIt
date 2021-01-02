@@ -10,6 +10,7 @@ const gitInfo = gitDescribeSync({
 });
 
 gitInfo.version = version;
+gitInfo.date = new Date();
 
 if (!existsSync(__dirname + '/src/environments')) {
     mkdirSync(__dirname + '/src/environments');
